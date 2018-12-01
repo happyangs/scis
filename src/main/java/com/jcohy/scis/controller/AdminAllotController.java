@@ -2,7 +2,6 @@ package com.jcohy.scis.controller;
 
 import com.jcohy.scis.common.JsonResult;
 import com.jcohy.scis.common.PageJson;
-import com.jcohy.scis.mapper.BkProductMapper;
 import com.jcohy.scis.model.*;
 import com.jcohy.scis.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +31,6 @@ public class AdminAllotController extends BaseController{
 
     @Autowired
     private ProjectService projectService;
-
-    @Autowired
-    private BkProductMapper bkProductMapper;
 
     @GetMapping("/list")
     @ResponseBody
@@ -93,12 +89,5 @@ public class AdminAllotController extends BaseController{
             return JsonResult.fail("删除失败");
         }
         return JsonResult.ok();
-    }
-
-    @PostMapping("/save/query")
-    @ResponseBody
-    public JsonResult save(@RequestBody BkProduct bk){
-        BkProduct bkProduct = bkProductMapper.selectByPrimaryKey(bk.getId());
-        return JsonResult.ok(bkProduct.getProductName());
     }
 }

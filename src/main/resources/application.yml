@@ -39,6 +39,13 @@ spring:
       max-file-size: 100Mb
       max-request-size: 100Mb
 
+# 配置pageHelper分页插件的内容
+pagehelper:
+     helperDialect: mysql
+     reasonable: true
+     supportMethodsArguments: true
+     params: count=countSq
+
 mybatis:
   mapper-locations: classpath:**/*.xml
   type-aliases-package: com.jcohy.scis.model
