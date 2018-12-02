@@ -7,28 +7,25 @@ layui.define([ 'layer',  'table','common'], function (exports) {
         elem: '#student'
         ,height: 'full-200'
         ,method:'GET'
-        ,url: '/admin/student/list' //数据接口
+        ,url: '/order/list' //数据接口
         ,cols: [[ //表头
             {type: 'checkbox', align:'center',unresize:true}
-            ,{field: 'num', align:'center', title: '学生编号',unresize:true}
-            // ,{field: 'name', align:'center', title: '学生姓名',unresize:true}
-            // ,{field: 'sex', align:'center', title: '性别',unresize:true}
-            // ,{field: 'phone', align:'center', title: '电话',unresize:true}
-            // ,{field: 'dept', align:'center', title: '所属院系',unresize:true,templet: '<div>{{d.major.dept.name}}</div>'}
-            // ,{field: 'major', align:'center', title: '所属专业',unresize:true,templet: '<div>{{d.major.name}}</div>'}
-            // ,{field: 'sclass', align:'center', title: '班级',unresize:true}
-            // ,{field: 'chairman', align:'center', title: '辅导员',unresize:true,templet: '<div>{{d.major.dept.chairman}}</div>'}
-            // ,{fixed: 'right',  title:'操作',align:'center', toolbar: '#operator',unresize:true}
+            ,{field: 'orderId', align:'center', title: '订单编号',unresize:true}
+            ,{field: 'productId', align:'center', title: '产品ID',unresize:true}
+            ,{field: 'productName', align:'center', title: '作品名称',unresize:true}
+            ,{field: 'price', align:'center', title: '价格',unresize:true}
+            ,{field: 'productType', align:'center', title: '类型',unresize:true}
+            ,{field: 'buyerSchool', align:'center', title: '学校',unresize:true}
+            ,{field: 'buyerEmail', align:'center', title: '邮箱',unresize:true}
+            ,{field: 'orderStatus', align:'center', title: '状态',unresize:true}
+            ,{field: 'sendTime', align:'center', title: '发送时间',unresize:true}
+            ,{field: 'remarks', align:'center', title: '备注',unresize:true}
+            ,{field: 'salesMan', align:'center', title: '销售员',unresize:true}
+            ,{field: 'addTime', align:'center', title: '创建时间',unresize:true}
+            // ,{field: 'updateTime', align:'center', title: '更新时间',unresize:true}
+            ,{fixed: 'right',  title:'操作',align:'center', toolbar: '#operator',unresize:true}
         ]]
         ,page: true //开启分页
-        ,parseData: function(res){ //将原始数据解析成 table 组件所规定的数据
-            return {
-                "code": res.status, //解析接口状态
-                "msg": res.message, //解析提示文本
-                "count": res.total, //解析数据长度
-                "data": res.rows.item //解析数据列表
-            };
-        }
     });
 
     //监听工具条
@@ -57,14 +54,19 @@ layui.define([ 'layer',  'table','common'], function (exports) {
 
     });
 
-    var dept,keyword,major='';
+    var school,productId='';
     $('#search').click(function () {
-        keyword = $("#keyword").val();
+        school = $("#school").val();
+        productId = $("#productId").val();
         table.reload('student', {
-            url: "/student/search"
-            ,where: {keyword:keyword} //设定异步数据接口的额外参数
+            url: "/order/list"
+            ,where: {
+                'buyerSchool': school,
+                'productId' : productId
+
+            } //设定异步数据接口的额外参数
             // ,where: {keyword:keyword,dept:dept,major:major} //设定异步数据接口的额外参数
-            //,height: 300
+            ,height: 500
         });
     });
 

@@ -43,8 +43,8 @@
 
     <div class="layui-row">
         <div class="layui-form layui-col-md12 star-so">
-            <input class="layui-input" placeholder="学校名称" name="keyword" id="keyword1">
-            <input class="layui-input" placeholder="产品名称" name="keyword" id="keyword2">
+            <input class="layui-input" placeholder="产品ID" name="productId" id="productId">
+            <input class="layui-input" placeholder="学校名称" name="school" id="school">
             <button class="layui-btn" id="search" "><i class="layui-icon">&#xe615;</i></button>
             <button class="layui-btn" style="position: relative;float: right;right: 100px;" onclick="javascript:location.replace(location.href)">
                 <i class="layui-icon">&#x1002;</i>

@@ -47,7 +47,7 @@
       AND product_type = #{productType,jdbcType=INTEGER}
     </if>
     <if test="buyerSchool != null">
-      AND buyer_school LIKE '%'+#{buyerSchool,jdbcType=VARCHAR}+'%'
+      AND buyer_school LIKE CONCAT('%',#{buyerSchool,jdbcType=VARCHAR},'%')
     </if>
     <if test="buyerEmail != null">
       AND buyer_email = #{buyerEmail,jdbcType=VARCHAR}

@@ -1,6 +1,6 @@
 package com.jcohy.scis.service;
 
-import com.jcohy.scis.common.Result;
+import com.jcohy.scis.common.PageResponse;
 import com.jcohy.scis.model.BkOrderReq;
 import com.jcohy.scis.model.BkOrderVo;
 
@@ -9,5 +9,5 @@ import com.jcohy.scis.model.BkOrderVo;
  */
 public interface OrderService {
 
-    Result<BkOrderVo> queryByCondition(BkOrderReq bkOrderReq);
+    PageResponse<BkOrderVo> queryByCondition(BkOrderReq bkOrderReq);
 }

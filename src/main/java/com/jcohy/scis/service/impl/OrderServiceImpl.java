@@ -2,8 +2,8 @@ package com.jcohy.scis.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.jcohy.scis.common.Meta;
-import com.jcohy.scis.common.Result;
+import com.jcohy.scis.common.PageResponse;
+import com.jcohy.scis.common.Response;
 import com.jcohy.scis.mapper.BkOrderMapper;
 import com.jcohy.scis.model.BkOrderReq;
 import com.jcohy.scis.model.BkOrderVo;
@@ -22,11 +22,11 @@ public class OrderServiceImpl implements OrderService {
     private BkOrderMapper bkOrderMapper;
 
     @Override
-    public Result<BkOrderVo> queryByCondition(BkOrderReq bkOrderReq) {
+    public PageResponse queryByCondition(BkOrderReq bkOrderReq) {
         List<BkOrderVo> list = bkOrderMapper.selectByCondition(bkOrderReq);
         PageHelper.startPage(bkOrderReq.getPageNum() , bkOrderReq.getPageSize());
         PageInfo<BkOrderVo> pageInfo = new PageInfo<>(list);
         Long total = pageInfo.getTotal();
-        return Result.buildResult(pageInfo.getList(), Meta.buildMeta(total.intValue()));
+        return PageResponse.buildSuccessResponseWithResult(list,total.intValue());
     }
 }
