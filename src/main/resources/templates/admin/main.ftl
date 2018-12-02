@@ -99,6 +99,13 @@
                             <dd><a href="javascript:;" data-url="${ctx!}/admin/circular/index" data-id="13">发布通告</a></dd>
                         </dl>
                     </li>
+
+                    <li class="layui-nav-item">
+                        <a href="javascript:;"><i class="fa"></i>订单管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;" data-url="${ctx!}/admin/order/index" data-id="14">订单明细</a></dd>
+                        </dl>
+                    </li>
                 </ul>
             </div>
         </div>
