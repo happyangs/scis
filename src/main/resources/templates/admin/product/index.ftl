@@ -38,13 +38,12 @@
 <body>
 
 <fieldset id="dataList" class="layui-elem-field layui-field-title sys-list-field">
-    <legend style="text-align:center;">订单列表</legend>
+    <legend style="text-align:center;">产品列表</legend>
 
 
     <div class="layui-row">
         <div class="layui-form layui-col-md12 star-so">
             <input class="layui-input" placeholder="产品ID" name="productId" id="productId">
-            <input class="layui-input" placeholder="学校名称" name="school" id="school">
             <button class="layui-btn" id="search" "><i class="layui-icon">&#xe615;</i></button>
             <button class="layui-btn" style="position: relative;float: right;right: 100px;" onclick="javascript:location.replace(location.href)">
                 <i class="layui-icon">&#x1002;</i>
@@ -52,18 +51,18 @@
         </div>
     </div>
 
-   <#-- <div style="padding: 40px 0px 0px 80px;">
+    <div style="padding: 40px 0px 0px 80px;">
         <div class="layui-inline">
             <div class="layui-input-inline" style="width:auto">
                 <a id="addStudent" class="layui-btn layui-btn-normal">添加</a>
             </div>
         </div>
-    </div>-->
+    </div>
 
 
     <div class="layui-field-box">
         <div id="dataContent" class="">
-            <table class="layui-hide" id="order" lay-filter="table"></table>
+            <table class="layui-hide" id="product" lay-filter="table"></table>
             <script type="text/html" id="operator">
                 <a class="layui-btn" lay-event="edit">编辑</a>
                 <a class="layui-btn layui-btn-danger " lay-event="del">删除</a>
@@ -79,7 +78,7 @@
 <script type="text/javascript">
     layui.config({
         base: '${ctx}/js/'
-    }).use('admin/order/index');
+    }).use('admin/product/index');
 </script>
 </body>
 </html>

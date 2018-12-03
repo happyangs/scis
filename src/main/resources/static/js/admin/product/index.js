@@ -4,25 +4,22 @@ layui.define([ 'layer',  'table','common'], function (exports) {
         common = layui.common,
         table  = layui.table ;
     table.render({
-        elem: '#order'
+        elem: '#product'
         ,method:'GET'
-        ,url: '/order/list' //数据接口
+        ,url: '/product/list' //数据接口
         ,height: 655
         ,cols: [[ //表头
             {type: 'checkbox', align:'center',unresize:true}
-            ,{field: 'orderId', align:'center', title: '订单号',width:100,unresize:true}
-            ,{field: 'productId', align:'center', title: '作品ID',width:80,unresize:true}
-            ,{field: 'productName', align:'center', title: '作品',unresize:true}
-            ,{field: 'price', align:'center', title: '价格',width:100,unresize:true,sort: true}
-            ,{field: 'productType', align:'right', title: '类型',unresize:true,width:65,sort: true}
-            ,{field: 'buyerSchool', align:'center', title: '学校',unresize:true}
-            ,{field: 'buyerEmail', align:'center', title: '邮箱',unresize:true}
-            ,{field: 'orderStatus', align:'center', title: '状态',width:65,unresize:true}
-            // ,{field: 'sendTime', align:'center', title: '发送时间',width:175,unresize:true}
-            ,{field: 'remarks', align:'center', title: '备注',width:70,unresize:true}
-            ,{field: 'salesMan', align:'center', title: '销售员',width:75,unresize:true}
-            ,{field: 'addTime', align:'center', title: '创建时间',width:175,unresize:true,sort: true}
-            // ,{field: 'updateTime', align:'center', title: '更新时间',unresize:true}
+            ,{field: 'productId', align:'center', title: '产品ID',width:100,unresize:true}
+            ,{field: 'productType', align:'center', title: '类型',width:65,unresize:true}
+            ,{field: 'productName', align:'center', title: '名称',width:200,unresize:true}
+            ,{field: 'price', align:'center', title: '价格',width:100,unresize:true}
+            ,{field: 'htmlNum', align:'center', title: '张数',width:65,unresize:true}
+            ,{field: 'productDesc', align:'center', title: '描述',width:250,unresize:true}
+            ,{field: 'productSynopsis', align:'center', title: '简介',width:250,unresize:true}
+            ,{field: 'addTime', align:'center', title: '添加时间',width:175,unresize:true}
+           /* ,{field: 'updateTime', align:'center', title: '更新时间',width:175,unresize:true}*/
+            ,{field: 'isDelete', align:'center', title: '开关',width:65,unresize:true}
             ,{fixed: 'right',  title:'操作',align:'center', toolbar: '#operator',unresize:true}
         ]]
         ,page: true //开启分页
@@ -58,12 +55,10 @@ layui.define([ 'layer',  'table','common'], function (exports) {
 
     var school,productId='';
     $('#search').click(function () {
-        school = $("#school").val();
         productId = $("#productId").val();
-        table.reload('order', {
-            url: "/order/list"
+        table.reload('product', {
+            url: "/product/list"
             ,where: {
-                'buyerSchool': school,
                 'productId' : productId
 
             } //设定异步数据接口的额外参数
