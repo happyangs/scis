@@ -54,7 +54,7 @@
     <div style="padding: 40px 0px 0px 80px;">
         <div class="layui-inline">
             <div class="layui-input-inline" style="width:auto">
-                <a id="addStudent" class="layui-btn layui-btn-normal">添加</a>
+                <a id="addProduct" class="layui-btn layui-btn-normal">添加</a>
             </div>
         </div>
     </div>

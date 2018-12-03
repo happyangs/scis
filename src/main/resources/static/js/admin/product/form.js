@@ -25,7 +25,7 @@
         $.ajax({
             type: "POST",
             dataType: "json",
-            url: "/admin/student/save",
+            url: "/product/insert",
             data: data.field,
             success: function(ret){
                 if(ret.isOk){

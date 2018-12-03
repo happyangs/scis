@@ -58,7 +58,7 @@
     <if test="salesMan != null">
       AND sales_man = #{salesMan,jdbcType=VARCHAR}
     </if>
-
+     ORDER BY update_time DESC
   </select>
 
   <insert id="insertSelective" parameterType="com.jcohy.scis.model.BkOrderVo">

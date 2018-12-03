@@ -13,7 +13,7 @@ layui.define([ 'layer',  'table','common'], function (exports) {
             ,{field: 'productId', align:'center', title: '产品ID',width:100,unresize:true}
             ,{field: 'productType', align:'center', title: '类型',width:65,unresize:true}
             ,{field: 'productName', align:'center', title: '名称',width:200,unresize:true}
-            ,{field: 'price', align:'center', title: '价格',width:100,unresize:true}
+            ,{field: 'price', align:'center', title: '价格',width:100,unresize:true,sort: true}
             ,{field: 'htmlNum', align:'center', title: '张数',width:65,unresize:true}
             ,{field: 'productDesc', align:'center', title: '描述',width:250,unresize:true}
             ,{field: 'productSynopsis', align:'center', title: '简介',width:250,unresize:true}
@@ -37,14 +37,14 @@ layui.define([ 'layer',  'table','common'], function (exports) {
     });
 
     //添加数据
-    $('#addStudent').click(function () {
-        layer.msg('功能待开放', {time: 2000});
-        // var index = layer.load(1);
-        // setTimeout(function () {
-        //     layer.close(index);
-        //     common.frame_show('分类添加','/admin/student/form');
-        //     // layer.msg('打开添加窗口');
-        // }, 500);
+    $('#addProduct').click(function () {
+        // layer.msg('功能待开放', {time: 2000});
+        var index = layer.load(1);
+        setTimeout(function () {
+            layer.close(index);
+            common.frame_show('分类添加','/product/form');
+            // layer.msg('打开添加窗口');
+        }, 500);
     });
 
     //批量删除数据
