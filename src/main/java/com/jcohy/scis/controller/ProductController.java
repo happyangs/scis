@@ -4,6 +4,9 @@ import com.jcohy.scis.common.JsonResult;
 import com.jcohy.scis.common.PageResponse;
 import com.jcohy.scis.model.*;
 import com.jcohy.scis.service.ProductService;
+import com.jcohy.scis.utils.JsonUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,6 +21,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/product")
 public class ProductController {
+
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private ProductService productService;
@@ -37,23 +42,25 @@ public class ProductController {
 
     @GetMapping("/form")
     public String form(@RequestParam(required = false) Integer id, ModelMap map){
-        List<Teacher> teachers =new ArrayList<>();
-        List<Type> types =new ArrayList<>();
-        map.put("types",types);
-        map.put("teachers",teachers);
-        if(id != null){
-            Project project = new Project();
-            map.put("project",project);
-        }
-        return "admin/product/form";
+        BkProductVo product = new BkProductVo();
+        productService.queryById(id);
+        map.put("product",product);
+
+        return "product/form";
     }
 
 
     @PostMapping("/insert")
     @ResponseBody
-    public JsonResult saveOrUpdate(BkProductVo bkProductVo){
-        System.out.println(1);
-
+    public JsonResult saveOrUpdate(BkProductReq bkProductReq){
+        productService.insert(bkProductReq);
         return JsonResult.ok();
     }
+
+    @GetMapping("/del")
+    @ResponseBody
+    public JsonResult delete(@RequestParam(required = false) Integer id){
+        return productService.delete(id);
+    }
+
 }

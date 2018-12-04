@@ -31,7 +31,7 @@
                     <div class="layui-form-item" style="margin-top: 10px">
                         <label class="layui-form-label">产品类型</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="productType" lay-verify="number"  placeholder="请输入产品类型" value="${(student.num?c)!}"
+                            <input type="text" name="productType" lay-verify="required|number"  placeholder="请输入产品类型" value="${(student.num?c)!}"
                                    autocomplete="off" class="layui-input ">
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                     </div>
 
                     <div class="layui-form-item">
-                        <label class="layui-form-label">首页图片链接</label>
+                        <label class="layui-form-label">首页图片</label>
                         <div class="layui-input-inline">
                             <input type="text" name="showPath" lay-verify="required" placeholder="请输入首页图片链接" value="${student.name}"
                                    autocomplete="off" class="layui-input">
@@ -56,7 +56,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">价格</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="price" lay-verify="required" placeholder="请输入价格" value="${student.password}"
+                            <input type="text" name="price" lay-verify="required|number" placeholder="请输入价格" value="${student.password}"
                                    autocomplete="off" class="layui-input">
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">总张数</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="htmlNum" lay-verify="required" placeholder="请输入总张数" value="${student.password}"
+                            <input type="text" name="htmlNum" lay-verify="required|number" placeholder="请输入总张数" value="${student.password}"
                                    autocomplete="off" class="layui-input">
                         </div>
                     </div>
@@ -84,6 +84,13 @@
                                    autocomplete="off" class="layui-input">
                         </div>
                     </div>
+
+                    <#--<div class="layui-form-item" pane>-->
+                        <#--<label class="layui-form-label">开关</label>-->
+                        <#--<div class="layui-input-block">-->
+                            <#--<input type="checkbox" name="iSwitch" lay-skin="switch" lay-text="ON|OFF">-->
+                        <#--</div>-->
+                    <#--</div>-->
 
                     <div class="layui-form-item">
                         <button class="layui-btn" lay-submit lay-filter="add">立即提交</button>

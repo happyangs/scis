@@ -14,9 +14,11 @@ public interface BkProductMapper {
 
     List<BkProductVo> selectByCondition(BkProductReq bkProductReq);
 
-    void insert(BkProductVo bkProductVo);
+    void insert(BkProductReq bkProductReq);
 
-    void del(List<Integer> ids);
+    BkProductVo getMaxProductId();
+
+    void deleteById(Integer id);
 
     void update(BkProductVo bkProductVo);
 }

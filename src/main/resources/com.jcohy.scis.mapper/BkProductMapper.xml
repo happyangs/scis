@@ -30,6 +30,98 @@
         <if test="productId != null">
             AND product_id = #{productId,jdbcType=INTEGER}
         </if>
+        <if test="id != null">
+            AND id = #{id,jdbcType=INTEGER}
+        </if>
         ORDER BY update_time DESC
     </select>
+
+    <select id="getMaxProductId" parameterType="com.jcohy.scis.model.BkProductReq" resultMap="BaseResultMap">
+        SELECT product_id FROM bk_product ORDER BY product_id DESC LIMIT 1
+    </select>
+
+    <insert id="insert" parameterType="com.jcohy.scis.model.BkProductReq">
+        insert into bk_product
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="productId != null">
+                product_id,
+            </if>
+            <if test="productType != null">
+                product_type,
+            </if>
+            <if test="productName != null">
+                product_name,
+            </if>
+            <if test="showPath != null">
+                show_path,
+            </if>
+            <if test="price != null">
+                price,
+            </if>
+            <if test="htmlNum != null">
+                html_num,
+            </if>
+            <if test="productDesc != null">
+                product_desc,
+            </if>
+            <if test="productSynopsis != null">
+                product_synopsis,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="addTime != null">
+                add_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="isDelete != null">
+                is_delete,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="productId != null">
+                #{productId,jdbcType=INTEGER},
+            </if>
+            <if test="productType != null">
+                #{productType,jdbcType=INTEGER},
+            </if>
+            <if test="productName != null">
+                #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="showPath != null">
+                #{showPath,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="htmlNum != null">
+                #{htmlNum,jdbcType=INTEGER},
+            </if>
+            <if test="productDesc != null">
+                #{productDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="productSynopsis != null">
+                #{productSynopsis,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="addTime != null">
+                #{addTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isDelete != null">
+                #{isDelete,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from bk_product
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
 </mapper>

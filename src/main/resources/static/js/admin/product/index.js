@@ -9,7 +9,7 @@ layui.define([ 'layer',  'table','common'], function (exports) {
         ,url: '/product/list' //数据接口
         ,height: 655
         ,cols: [[ //表头
-            {type: 'checkbox', align:'center',unresize:true}
+             {field: 'id',type: 'checkbox', align:'center',unresize:true}
             ,{field: 'productId', align:'center', title: '产品ID',width:100,unresize:true}
             ,{field: 'productType', align:'center', title: '类型',width:65,unresize:true}
             ,{field: 'productName', align:'center', title: '名称',width:200,unresize:true}
@@ -31,19 +31,16 @@ layui.define([ 'layer',  'table','common'], function (exports) {
         if(obj.event === 'del'){
             del(data.id);
         } else if(obj.event === 'edit'){
-            // common.frame_show('编辑','/admin/student/form?id='+data.id);
-            layer.msg('功能待开放', {time: 2000});
+            common.frame_show('编辑','/admin/product/form?id='+data.id);
         }
     });
 
     //添加数据
     $('#addProduct').click(function () {
-        // layer.msg('功能待开放', {time: 2000});
         var index = layer.load(1);
         setTimeout(function () {
             layer.close(index);
             common.frame_show('分类添加','/product/form');
-            // layer.msg('打开添加窗口');
         }, 500);
     });
 
@@ -78,28 +75,27 @@ layui.define([ 'layer',  'table','common'], function (exports) {
             });
         },
         editData: function (id) {
-            common.frame_show('分类编辑','/admin/student/form?id='+id);
+            common.frame_show('分类编辑','/admin/product/form?id='+id);
         }
     };
     function del(id) {
-        layer.msg('功能待开放', {time: 2000});
-        // layer.confirm('真的删除行么', function (index) {
-        //     $.ajax({
-        //         type: "DELETE",
-        //         dataType: "json",
-        //         url: "/admin/student/" + id + "/del",
-        //         success: function (ret) {
-        //             if (ret.isOk) {
-        //                 layer.msg("操作成功", {time: 2000}, function () {
-        //                     layer.close(index);
-        //                     window.location.href = "/admin/student/index";
-        //                 });
-        //             } else {
-        //                 layer.msg(ret.msg, {time: 2000});
-        //             }
-        //         }
-        //     });
-        // });
+        layer.confirm('真的删除行么', function (index) {
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: "/product/del?id="+id,
+                success: function (ret) {
+                    if (ret.isOk) {
+                        layer.msg("操作成功", {time: 2000}, function () {
+                            layer.close(index);
+                            window.location.href = "/admin/product/index";
+                        });
+                    } else {
+                        layer.msg(ret.msg, {time: 2000});
+                    }
+                }
+            });
+        });
     }
-    exports('admin/order/index', datalist);
+    exports('admin/product/index', datalist);
 });
