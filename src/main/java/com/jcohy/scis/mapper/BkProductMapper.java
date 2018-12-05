@@ -20,5 +20,5 @@ public interface BkProductMapper {
 
     void deleteById(Integer id);
 
-    void update(BkProductVo bkProductVo);
+    void update(BkProductReq bkProductReq);
 }

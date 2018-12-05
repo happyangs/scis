@@ -40,11 +40,15 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public JsonResult insert(BkProductReq bkProductReq) {
-
         if (bkProductReq != null){
-            bkProductReq.setProductId(this.getOrderId());
-            bkProductReq.setAddTime(new Date());
-            bkProductMapper.insert(bkProductReq);
+           Integer id = bkProductReq.getId();
+            if(id == null){// 插入
+                bkProductReq.setProductId(this.getOrderId());
+                bkProductReq.setAddTime(new Date());
+                bkProductMapper.insert(bkProductReq);
+            }else {
+                bkProductMapper.update(bkProductReq);
+            }
         }
         return JsonResult.ok();
     }

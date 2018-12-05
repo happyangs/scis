@@ -15,9 +15,6 @@
 </head>
 
 <body>
-<fieldset id="dataList" class="layui-elem-field layui-field-title sys-list-field">
-    <legend style="text-align:center;">添加产品</legend>
-</fieldset>
 <div class="container-fluid larry-wrapper">
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -46,7 +43,7 @@
 
                     <div class="layui-form-item">
                         <label class="layui-form-label">首页图片</label>
-                        <div class="layui-input-inline">
+                        <div class="layui-input-block">
                             <input type="text" name="showPath" lay-verify="required" placeholder="请输入首页图片链接" value="${product.showPath}"
                                    autocomplete="off" class="layui-input">
                         </div>
@@ -77,11 +74,18 @@
                         </div>
                     </div>
 
-                    <div class="layui-form-item">
+                   <#-- <div class="layui-form-item">
                         <label class="layui-form-label">详情简介</label>
                         <div class="layui-input-inline">
                             <input type="text" name="productSynopsis" lay-verify="required" placeholder="请输入详情简介" value="${product.productSynopsis}"
                                    autocomplete="off" class="layui-input">
+                        </div>
+                    </div>-->
+
+                    <div class="layui-form-item layui-form-text">
+                        <label class="layui-form-label">详情简介</label>
+                        <div class="layui-input-block">
+                            <textarea name="productSynopsis" lay-verify="required" placeholder="请输入详情简介" class="layui-textarea">${product.productSynopsis}</textarea>
                         </div>
                     </div>
 
