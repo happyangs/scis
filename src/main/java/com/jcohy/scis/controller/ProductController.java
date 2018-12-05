@@ -42,11 +42,11 @@ public class ProductController {
 
     @GetMapping("/form")
     public String form(@RequestParam(required = false) Integer id, ModelMap map){
-        BkProductVo product = new BkProductVo();
-        productService.queryById(id);
-        map.put("product",product);
-
-        return "product/form";
+        if (id != null){
+            BkProductVo product = productService.queryById(id);
+            map.put("product",product);
+        }
+        return "admin/product/form";
     }
 
 

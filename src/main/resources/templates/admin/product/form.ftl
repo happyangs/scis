@@ -25,13 +25,13 @@
                 <form id="form1" class="layui-form" lay-filter="form">
 
                     <div class="layui-form-item">
-                        <input type="hidden" name="id" value="${(student.id)!}" >
+                        <input type="hidden" name="id" value="${product.id}" >
                     </div>
 
                     <div class="layui-form-item" style="margin-top: 10px">
                         <label class="layui-form-label">产品类型</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="productType" lay-verify="required|number"  placeholder="请输入产品类型" value="${(student.num?c)!}"
+                            <input type="text" name="productType" lay-verify="required|number"  placeholder="请输入产品类型" value="${product.productType}"
                                    autocomplete="off" class="layui-input ">
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">商品名称</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="productName" lay-verify="required" placeholder="请输入产品名称" value="${student.name}"
+                            <input type="text" name="productName" lay-verify="required" placeholder="请输入产品名称" value="${product.productName}"
                                    autocomplete="off" class="layui-input">
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">首页图片</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="showPath" lay-verify="required" placeholder="请输入首页图片链接" value="${student.name}"
+                            <input type="text" name="showPath" lay-verify="required" placeholder="请输入首页图片链接" value="${product.showPath}"
                                    autocomplete="off" class="layui-input">
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">价格</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="price" lay-verify="required|number" placeholder="请输入价格" value="${student.password}"
+                            <input type="text" name="price" lay-verify="required|number" placeholder="请输入价格" value="${product.price}"
                                    autocomplete="off" class="layui-input">
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">总张数</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="htmlNum" lay-verify="required|number" placeholder="请输入总张数" value="${student.password}"
+                            <input type="text" name="htmlNum" lay-verify="required|number" placeholder="请输入总张数" value="${product.htmlNum}"
                                    autocomplete="off" class="layui-input">
                         </div>
                     </div>
@@ -72,7 +72,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">商品描述</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="productDesc" lay-verify="required" placeholder="请输入商品描述" value="${student.password}"
+                            <input type="text" name="productDesc" lay-verify="required" placeholder="请输入商品描述" value="${product.productDesc}"
                                    autocomplete="off" class="layui-input">
                         </div>
                     </div>
@@ -80,7 +80,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">详情简介</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="productSynopsis" lay-verify="required" placeholder="请输入详情简介" value="${student.password}"
+                            <input type="text" name="productSynopsis" lay-verify="required" placeholder="请输入详情简介" value="${product.productSynopsis}"
                                    autocomplete="off" class="layui-input">
                         </div>
                     </div>

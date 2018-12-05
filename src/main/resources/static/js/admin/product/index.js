@@ -31,7 +31,7 @@ layui.define([ 'layer',  'table','common'], function (exports) {
         if(obj.event === 'del'){
             del(data.id);
         } else if(obj.event === 'edit'){
-            common.frame_show('编辑','/admin/product/form?id='+data.id);
+            common.frame_show('编辑','/product/form?id='+data.id);
         }
     });
 
@@ -75,7 +75,7 @@ layui.define([ 'layer',  'table','common'], function (exports) {
             });
         },
         editData: function (id) {
-            common.frame_show('分类编辑','/admin/product/form?id='+id);
+            common.frame_show('分类编辑','/product/form?id='+id);
         }
     };
     function del(id) {
