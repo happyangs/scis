@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jcohy.scis.mapper.BkPictureMapper">
+    <resultMap id="BaseResultMap" type="com.jcohy.scis.model.BkProductPictureVo">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="product_id" jdbcType="INTEGER" property="productId" />
+        <result column="picture_type" jdbcType="INTEGER" property="pictureType" />
+        <result column="picture_size" jdbcType="VARCHAR" property="pictureSize" />
+        <result column="picture_path" jdbcType="VARCHAR" property="picturePath" />
+        <result column="remark" jdbcType="VARCHAR" property="remark" />
+        <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+        <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+       id, product_id, picture_type, picture_size, picture_path, remark, add_time, update_time,
+       is_delete
+    </sql>
+
+    <select id="selectByCondition" parameterType="com.jcohy.scis.model.BkProductPictureReq" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from bk_product_picture
+        where 1 = 1
+        <if test="productId != null">
+            AND product_id = #{productId,jdbcType=INTEGER}
+        </if>
+        <if test="id != null">
+            AND id = #{id,jdbcType=INTEGER}
+        </if>
+        ORDER BY update_time DESC
+    </select>
+
+    <insert id="insertOrUpdate" parameterType="com.jcohy.scis.model.BkProductPictureReq">
+        replace into bk_product_picture
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="productId != null">
+                product_id,
+            </if>
+            <if test="pictureType != null">
+                picture_type,
+            </if>
+            <if test="pictureSize != null">
+                picture_size,
+            </if>
+            <if test="picturePath != null">
+                picture_path,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="addTime != null">
+                add_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="isDelete != null">
+                is_delete,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test=" != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="productId != null">
+                #{productId,jdbcType=INTEGER},
+            </if>
+            <if test="pictureType != null">
+                #{pictureType,jdbcType=INTEGER},
+            </if>
+            <if test="pictureSize != null">
+                #{pictureSize,jdbcType=VARCHAR},
+            </if>
+            <if test="picturePath != null">
+                #{picturePath,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="addTime != null">
+                #{addTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isDelete != null">
+                #{isDelete,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from bk_product_picture
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+</mapper>

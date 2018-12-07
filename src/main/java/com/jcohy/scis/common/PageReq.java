@@ -26,4 +26,12 @@ public class PageReq extends RequestVo {
 
     @NotNull(message = "页码不能为空")
     private Integer pageNum;
+
+    public PageReq(){
+        super();
+    }
+    public PageReq(Integer pageSize,Integer pageNum){
+        this.pageSize = pageSize;
+        this.pageNum = pageNum;
+    }
 }

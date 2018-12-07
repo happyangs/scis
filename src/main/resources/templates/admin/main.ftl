@@ -110,7 +110,7 @@
                         <a href="javascript:;"><i class="fa"></i>作品管理</a>
                         <dl class="layui-nav-child">
                             <dd><a href="javascript:;" data-url="${ctx!}/admin/product/index" data-id="15">作品工坊</a></dd>
-                           <#-- <dd><a href="javascript:;" data-url="${ctx!}/admin/order/index" data-id="14">作品图片</a></dd>-->
+                            <dd><a href="javascript:;" data-url="${ctx!}/admin/picture/index" data-id="14">作品图片</a></dd>
                         </dl>
                     </li>
                 </ul>

@@ -7,10 +7,10 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * Created by Bryant on 2018.12.3
+ * Created by Bryant on 2018.12.6
  */
 @Data
-public class BkProductReq extends PageReq {
+public class BkProductPictureReq extends PageReq {
 
     private Integer id;
     /**
@@ -78,10 +78,10 @@ public class BkProductReq extends PageReq {
      */
     private String iSwitch;
 
-    public BkProductReq(){
+    public BkProductPictureReq(){
         super();
     }
-    public BkProductReq(Integer page, Integer limit) {
+    public BkProductPictureReq(Integer page, Integer limit) {
         super(page,limit);
 
     }

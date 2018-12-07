@@ -26,7 +26,7 @@ CREATE TABLE `bk_order` (
   KEY `idx_update_time` (`update_time`) USING BTREE COMMENT '更新时间索引'
 ) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT COMMENT='订单表';
 
-INSERT INTO bk_order (order_id,product_id,product_name,price,product_type,buyer_shcool,buyer_email,order_status,sales_man) VALUE ('20181001','1001','篮球梦之队','26.05',0,'南京师范大学00校区','ahuth3j@163.com',1,'华剑');
+INSERT INTO bk_order (order_id,product_id,product_name,price,product_type,buyer_school,buyer_email,order_status,sales_man) VALUE ('20181001','1001','篮球梦之队','26.05',0,'南京师范大学00校区','ahuth3j@163.com',1,'华剑');
 INSERT INTO bk_order (order_id,product_id,product_name,price,product_type,buyer_school,buyer_email,order_status,sales_man) VALUE ('20181002','1002','篮球梦之队','20.00',0,'南京师范大学01校区','4546546@163.com',1,'张三');
 INSERT INTO bk_order (order_id,product_id,product_name,price,product_type,buyer_school,buyer_email,order_status,sales_man) VALUE ('20181003','1003','篮球梦之队','20.02',0,'南京师范大学02校区','4546546@163.com',1,'张三');
 INSERT INTO bk_order (order_id,product_id,product_name,price,product_type,buyer_school,buyer_email,order_status,sales_man) VALUE ('20181004','1004','篮球梦之队','20.03',1,'南京师范大学03校区','4546546@163.com',1,'张三');
