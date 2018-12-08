@@ -25,27 +25,40 @@
             height: 45px;
         }
 
+        .star-so{
+            text-align: center;
+            margin-bottom: 10px;
+            margin-top: 40px;
+        }
+        .star-so input.layui-input{
+            width: 200px;
+            display: inline-block;
+        }
+
     </style>
 </head>
 <body>
 
 <fieldset id="dataList" class="layui-elem-field layui-field-title sys-list-field">
-    <legend style="text-align:center;">专业列表</legend>
+    <legend style="text-align:center;">图片列表</legend>
+
+    <div class="layui-row">
+        <div class="layui-form layui-col-md12 star-so">
+            <input class="layui-input" placeholder="产品ID" name="productId" id="productId">
+            <button class="layui-btn" id="search" "><i class="layui-icon">&#xe615;</i></button>
+            <button class="layui-btn" style="position: relative;float: right;right: 100px;" onclick="javascript:location.replace(location.href)">
+                <i class="layui-icon">&#x1002;</i>
+            </button>
+        </div>
+    </div>
 
     <div style="padding: 40px 0px 0px 80px;">
         <div class="layui-inline">
             <div class="layui-input-inline" style="width:auto">
-                <a id="addMajor" class="layui-btn layui-btn-normal">添加专业</a>
+                <a id="addPicture" class="layui-btn layui-btn-normal">添加图片</a>
             </div>
         </div>
-
-        <#--<div class="layui-inline">-->
-            <#--<div class="layui-input-inline" style="width:auto">-->
-                <#--<a id="deleteAll" class="layui-btn layui-btn-normal">批量删除</a>-->
-            <#--</div>-->
-        <#--</div>-->
     </div>
-
 
     <div class="layui-field-box">
         <div id="dataContent" class="">
@@ -55,19 +68,6 @@
                 <a class="layui-btn layui-btn-danger " lay-event="del">删除</a>
             </script>
 
-            <#--<script type="text/html" id="choicesTpl">-->
-
-                <#--<form class="layui-form" action="">-->
-                    <#--<div class="layui-form-item" style="margin:0;">-->
-                        <#--{{#  if(d.status == 1){ }}-->
-                        <#--<input type="checkbox" name="status" title="是" value="{{d.id}}" lay-filter="status"  checked  />-->
-                        <#--{{#  } else { }}-->
-                        <#--<input type="checkbox" name="status" title="否" value="{{d.id}}" lay-filter="status" />-->
-                        <#--{{#  } }}-->
-                    <#--</div>-->
-                <#--</form>-->
-                <#--&lt;#&ndash;<button class="layui-btn layui-btn-small layui-btn-normal" onclick="layui.datalist.editData({{d.id}})"><i class="layui-icon">&#xe642;</i></button>&ndash;&gt;-->
-            <#--</script>-->
         </div>
     </div>
 </fieldset>

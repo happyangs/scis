@@ -46,21 +46,15 @@ layui.define(['laypage', 'layer',  'table','common','util','form'], function (ex
         }
     });
 
-
     //添加数据
-    $('#addMajor').click(function () {
+    $('#addPicture').click(function () {
         var index = layer.load(1);
+        var pid = $('#productId').val();
         setTimeout(function () {
             layer.close(index);
-            common.frame_show('分类添加','/admin/major/form');
+            common.frame_show('分类添加','/admin/picture/form?pid='+pid);
             // layer.msg('打开添加窗口');
         }, 500);
-    });
-
-    //批量删除数据
-    $('#deleteAll').click(function () {
-        var index = layer.load(1);
-
     });
 
     //输出接口，主要是两个函数，一个删除一个编辑
@@ -97,33 +91,6 @@ layui.define(['laypage', 'layer',  'table','common','util','form'], function (ex
             });
         });
     }
-
-    function Format(datetime,fmt) {
-        if (parseInt(datetime)==datetime) {
-            if (datetime.length==10) {
-                datetime=parseInt(datetime)*1000;
-            } else if(datetime.length==13) {
-                datetime=parseInt(datetime);
-            }
-        }
-        datetime=new Date(datetime);
-        var o = {
-            "M+" : datetime.getMonth()+1,                 //月份
-            "d+" : datetime.getDate(),                    //日
-            "h+" : datetime.getHours(),                   //小时
-            "m+" : datetime.getMinutes(),                 //分
-            "s+" : datetime.getSeconds(),                 //秒
-            "q+" : Math.floor((datetime.getMonth()+3)/3), //季度
-            "S"  : datetime.getMilliseconds()             //毫秒
-        };
-        if(/(y+)/.test(fmt))
-            fmt=fmt.replace(RegExp.$1, (datetime.getFullYear()+"").substr(4 - RegExp.$1.length));
-        for(var k in o)
-            if(new RegExp("("+ k +")").test(fmt))
-                fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
-        return fmt;
-    }
-
 
     exports('picture/index', datalist);
 });

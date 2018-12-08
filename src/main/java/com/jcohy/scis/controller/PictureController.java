@@ -48,32 +48,30 @@ public class PictureController {
         return pageResponse;
     }
 
+    /**
+     *
+     * @param id
+     * @param pid 待添加图片产品
+     * @param map
+     * @return
+     */
     @GetMapping("/form")
-    public String form(@RequestParam(required = false) Integer id, ModelMap map){
-        List<Dept> depts = deptService.findAll();
-        map.put("depts",depts);
-        if(id != null){
-            Major major = majorService.findById(id);
-            map.put("major",major);
+    public String form(@RequestParam(required = false) Integer id,
+                       @RequestParam(required = false) Integer pid,
+                       ModelMap map){
+        BkProductPictureVo bkProductPictureVo = new BkProductPictureVo();
+        if (pid != null){// 添加图片
+            bkProductPictureVo.setProductId(pid);
+        }else{
+            bkProductPictureVo = pictureService.queryById(id);
         }
+        map.put("picture",bkProductPictureVo);
         return "admin/picture/form";
     }
 
     @PostMapping("/save")
     @ResponseBody
-    public JsonResult save(Major major){
-        try {
-            if(major.getId() == null){
-                List<Major> num = majorService.findByNum(major.getNum());
-                if(num == null || num.size()>0){
-                    return JsonResult.fail("此专业已存在");
-                }
-            }
-            majorService.save(major);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return JsonResult.fail(e.getMessage());
-        }
+    public JsonResult save(BkProductPictureReq bkProductPictureVo){
         return JsonResult.ok();
     }
 

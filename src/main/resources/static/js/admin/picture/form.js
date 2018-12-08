@@ -8,7 +8,6 @@ layui.define(['element', 'layer', 'form'], function (exports) {
                 return "账号必须1到10位"
             }
         }
-
     });
     //监听登陆提交
     form.on('submit(add)', function (data) {
@@ -18,7 +17,7 @@ layui.define(['element', 'layer', 'form'], function (exports) {
         $.ajax({
             type: "POST",
             dataType: "json",
-            url: "/admin/major/save",
+            url: "/admin/picture/save",
             data: data.field,
             success: function(ret){
                 console.log(ret);
@@ -26,7 +25,7 @@ layui.define(['element', 'layer', 'form'], function (exports) {
                     layer.msg("操作成功", {time: 2000},function(){
                         var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
                         parent.layer.close(index);
-                        window.parent.location.href="/admin/major/index";
+                        window.parent.location.href="/admin/picture/index";
                     });
                 }else{
                     layer.msg(ret.msg, {time: 2000});
