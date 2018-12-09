@@ -7,7 +7,7 @@ layui.define(['laypage', 'layer',  'table','common','util','form'], function (ex
         common = layui.common,
         table  = layui.table ;
     table.render({
-        elem: '#major'
+        elem: '#picture'
         ,height: 'full-200'
         ,method:'GET'
         ,url: '/admin/picture/list' //数据接口
@@ -44,6 +44,18 @@ layui.define(['laypage', 'layer',  'table','common','util','form'], function (ex
                 layer.msg('第'+ obj.curr +'页');
             }
         }
+    });
+
+    var productId='';
+    $('#search').click(function () {
+        productId = $("#productId").val();
+        table.reload('picture', {
+            url: "/admin/picture/list"
+            ,where: {
+                'productId' : productId
+            } //设定异步数据接口的额外参数
+            // ,where: {keyword:keyword,dept:dept,major:major} //设定异步数据接口的额外参数
+        });
     });
 
     //添加数据

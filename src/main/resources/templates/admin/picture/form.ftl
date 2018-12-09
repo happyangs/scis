@@ -18,6 +18,7 @@
 <fieldset id="dataList" class="layui-elem-field layui-field-title sys-list-field">
     <legend style="text-align:center;">添加图片</legend>
 </fieldset>
+<section class="panel panel-padding">
 <form class="layui-form layui-form-pane" action="">
     <div class="layui-form-item">
         <input type="hidden" name="id" value="${picture.id}" >
@@ -66,7 +67,7 @@
         <button class="layui-btn" lay-submit lay-filter="add">立即提交</button>
     </div>
 </form>
-
+</section>
 <script src="${ctx!}/js/plugins/layui/layui.js"></script>
 <script src="${ctx!}/js/common.js"></script>
 <!-- layui规范化用法 -->

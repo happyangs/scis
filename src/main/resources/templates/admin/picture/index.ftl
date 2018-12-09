@@ -62,7 +62,7 @@
 
     <div class="layui-field-box">
         <div id="dataContent" class="">
-            <table class="layui-hide" id="major" lay-filter="table"></table>
+            <table class="layui-hide" id="picture" lay-filter="table"></table>
             <script type="text/html" id="operator">
                 <a class="layui-btn" lay-event="edit">编辑</a>
                 <a class="layui-btn layui-btn-danger " lay-event="del">删除</a>

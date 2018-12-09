@@ -13,45 +13,26 @@ import java.util.Date;
 public class BkProductPictureReq extends PageReq {
 
     private Integer id;
+
     /**
      * 商品编码
      */
     private Integer productId;
 
     /**
-     * 商品类型
+     * 图片类型 0-其他 1-首页 2-尾页 3-展示页
      */
-    private Integer productType;
+    private Integer pictureType;
 
     /**
-     * 商品名称
+     * 图片尺寸
      */
-    private String productName;
+    private String pictureSize;
 
     /**
-     * 首页图片链接
+     * 图片链接
      */
-    private String showPath;
-
-    /**
-     * 商品价格
-     */
-    private BigDecimal price;
-
-    /**
-     * 页面张数
-     */
-    private Integer htmlNum;
-
-    /**
-     * 商品描述
-     */
-    private String productDesc;
-
-    /**
-     * 详情简介
-     */
-    private String productSynopsis;
+    private String picturePath;
 
     /**
      * 备注
@@ -61,22 +42,17 @@ public class BkProductPictureReq extends PageReq {
     /**
      * 添加时间
      */
-    private Date addTime;
+    private String addTime;
 
     /**
      * 更新时间
      */
-    private Date updateTime;
+    private String updateTime;
 
     /**
      * 删除标记
      */
     private Integer isDelete;
-
-    /**
-     * 开关
-     */
-    private String iSwitch;
 
     public BkProductPictureReq(){
         super();

@@ -44,6 +44,7 @@ public class PictureController {
                                                 @RequestParam Integer limit,
                                                 @RequestParam(required = false) Integer productId){
         BkProductPictureReq bkProductPictureReq = new BkProductPictureReq(limit,page);
+        bkProductPictureReq.setProductId(productId);
         PageResponse pageResponse = pictureService.queryByCondition(bkProductPictureReq);
         return pageResponse;
     }
@@ -60,7 +61,7 @@ public class PictureController {
                        @RequestParam(required = false) Integer pid,
                        ModelMap map){
         BkProductPictureVo bkProductPictureVo = new BkProductPictureVo();
-        if (pid != null){// 添加图片
+        if (id == null){// 添加图片
             bkProductPictureVo.setProductId(pid);
         }else{
             bkProductPictureVo = pictureService.queryById(id);
@@ -71,7 +72,12 @@ public class PictureController {
 
     @PostMapping("/save")
     @ResponseBody
-    public JsonResult save(BkProductPictureReq bkProductPictureVo){
+    public JsonResult save(BkProductPictureReq bkProductPictureReq){
+        try {
+            pictureService.insertOrUpdate(bkProductPictureReq);
+        } catch (Exception e) {
+            logger.info(e.getMessage());
+        }
         return JsonResult.ok();
     }
 
