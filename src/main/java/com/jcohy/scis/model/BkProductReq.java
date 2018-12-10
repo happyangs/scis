@@ -78,6 +78,10 @@ public class BkProductReq extends PageReq {
      */
     private String iSwitch;
 
+    private String link;
+
+    private String linkCode;
+
     public BkProductReq(){
         super();
     }

@@ -10,17 +10,19 @@ layui.define([ 'layer',  'table','common'], function (exports) {
         ,height: 655
         ,cols: [[ //表头
              {field: 'id',type: 'checkbox', align:'center',unresize:true}
-            ,{field: 'productId', align:'center', title: '产品ID',width:100,unresize:true}
+            ,{field: 'productId', align:'center', title: '产品ID',width:80,unresize:true}
             ,{field: 'productType', align:'center', title: '类型',width:65,unresize:true}
-            ,{field: 'productName', align:'center', title: '名称',width:200,unresize:true}
-            ,{field: 'price', align:'center', title: '价格',width:100,unresize:true,sort: true}
+            ,{field: 'productName', align:'center', title: '名称',unresize:true}
+            ,{field: 'price', align:'center', title: '价格',width:80,unresize:true,sort: true}
             ,{field: 'htmlNum', align:'center', title: '张数',width:65,unresize:true}
-            ,{field: 'productDesc', align:'center', title: '描述',width:250,unresize:true}
-            ,{field: 'productSynopsis', align:'center', title: '简介',width:250,unresize:true}
-            ,{field: 'addTime', align:'center', title: '添加时间',width:175,unresize:true}
-           /* ,{field: 'updateTime', align:'center', title: '更新时间',width:175,unresize:true}*/
+            ,{field: 'showPath', align:'center', title: '首图',width:100,unresize:true}
+            ,{field: 'productDesc', align:'center', title: '描述',unresize:true}
+            ,{field: 'productSynopsis', align:'center', title: '简介',unresize:true}
+            ,{field: 'link', align:'center', title: '链接',unresize:true}
+            ,{field: 'linkCode', align:'center', title: '提取码',width:100,unresize:true}
+            ,{field: 'addTime', align:'center', title: '添加时间',unresize:true}
             ,{field: 'isDelete', align:'center', title: '开关',width:65,unresize:true}
-            ,{fixed: 'right',  title:'操作',align:'center', toolbar: '#operator',unresize:true}
+            ,{fixed: 'right',  title:'操作',align:'center', width:180,toolbar: '#operator',unresize:true}
         ]]
         ,page: true //开启分页
     });
@@ -41,6 +43,15 @@ layui.define([ 'layer',  'table','common'], function (exports) {
         setTimeout(function () {
             layer.close(index);
             common.frame_show('分类添加','/product/form');
+        }, 500);
+    });
+
+    $('#send').click(function () {
+        alert(1)
+        var index = layer.load(1);
+        setTimeout(function () {
+            layer.close(index);
+            common.frame_show('发送','/product/send');
         }, 500);
     });
 

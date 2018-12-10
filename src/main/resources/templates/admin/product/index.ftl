@@ -16,9 +16,6 @@
         .layui-laypage > * {
             float: left;
         }
-        .layui-field-title .layui-field-box{
-            padding: 10px 20px 10px 30px;
-        }
         .layui-table-cell{
             padding-top: 4px;
             height: 45px;
@@ -48,10 +45,13 @@
         </div>
     </div>
 
-    <div style="padding: 0px 0px 0px 30px;">
+    <div>
         <div class="layui-inline">
             <div class="layui-input-inline" style="width:auto">
                 <a id="addProduct" class="layui-btn layui-btn-normal">添加作品</a>
+            </div>
+            <div class="layui-input-inline" style="width:auto">
+                <a id="send" class="layui-btn layui-btn-normal">发送</a>
             </div>
         </div>
     </div>

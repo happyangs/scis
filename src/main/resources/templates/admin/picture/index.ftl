@@ -17,9 +17,6 @@
         .layui-laypage > * {
             float: left;
         }
-        .layui-field-title .layui-field-box{
-            padding: 10px 0px 10px 30px;
-        }
         .layui-table-cell{
             padding-top: 4px;
             height: 45px;
@@ -52,7 +49,7 @@
         </div>
     </div>
 
-    <div style="padding: 0px 0px 0px 30px;">
+    <div>
         <div class="layui-inline">
             <div class="layui-input-inline" style="width:auto">
                 <a id="addPicture" class="layui-btn layui-btn-normal">添加图片</a>

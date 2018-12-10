@@ -49,6 +49,12 @@ public class ProductController {
         return "admin/product/form";
     }
 
+    @GetMapping("/sendfrom")
+    public String send(@RequestParam Integer productId, ModelMap map){
+
+        return "admin/product/send";
+    }
+
 
     @PostMapping("/insert")
     @ResponseBody

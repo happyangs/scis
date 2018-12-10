@@ -15,11 +15,13 @@
         <result column="add_time" jdbcType="VARCHAR" property="addTime" />
         <result column="update_time" jdbcType="VARCHAR" property="updateTime" />
         <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
+        <result column="link" jdbcType="VARCHAR" property="link" />
+        <result column="link_code" jdbcType="VARCHAR" property="linkCode" />
     </resultMap>
 
     <sql id="Base_Column_List">
         id, product_id, product_type, product_name, show_path, price, html_num, product_desc,
-        product_synopsis, remark, add_time, update_time, is_delete
+        product_synopsis, remark, add_time, update_time, is_delete,link,link_code
     </sql>
 
     <select id="selectByCondition" parameterType="com.jcohy.scis.model.BkProductReq" resultMap="BaseResultMap">
@@ -79,6 +81,12 @@
             <if test="isDelete != null">
                 is_delete,
             </if>
+            <if test="link != null">
+                link,
+            </if>
+            <if test="linkCode != null">
+                link_code,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="productId != null">
@@ -117,6 +125,12 @@
             <if test="isDelete != null">
                 #{isDelete,jdbcType=INTEGER},
             </if>
+            <if test="linkCode != null">
+                #{linkCode,jdbcType=VARCHAR},
+            </if>
+            <if test="link != null">
+                #{link,jdbcType=VARCHAR},
+            </if>
         </trim>
     </insert>
 
@@ -154,6 +168,12 @@
             </if>
             <if test="isDelete != null">
                 is_delete = #{isDelete,jdbcType=INTEGER},
+            </if>
+            <if test="link != null">
+                link = #{link,jdbcType=VARCHAR},
+            </if>
+            <if test="linkCode != null">
+                link_code = #{linkCode,jdbcType=VARCHAR},
             </if>
         </set>
         where id = #{id}

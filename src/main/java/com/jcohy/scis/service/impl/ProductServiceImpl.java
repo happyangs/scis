@@ -41,7 +41,10 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public JsonResult insert(BkProductReq bkProductReq) {
         if (bkProductReq != null){
-           Integer id = bkProductReq.getId();
+            if (bkProductReq.getIsDelete() == null){
+                bkProductReq.setIsDelete(IsDeleteEnum.NORMAL_DELETE.getCode());
+            }
+            Integer id = bkProductReq.getId();
             if(id == null){// 插入
                 bkProductReq.setProductId(this.getOrderId());
                 bkProductReq.setAddTime(new Date());

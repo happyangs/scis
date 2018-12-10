@@ -49,7 +49,6 @@
                         </div>
                     </div>
 
-
                     <div class="layui-form-item">
                         <label class="layui-form-label">价格</label>
                         <div class="layui-input-inline">
@@ -74,6 +73,21 @@
                         </div>
                     </div>
 
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">云链接</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="link" lay-verify="required" placeholder="请输入链接" value="${product.link}"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">提取码</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="linkCode" lay-verify="required" placeholder="请输入提取码" value="${product.linkCode}"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
                    <#-- <div class="layui-form-item">
                         <label class="layui-form-label">详情简介</label>
                         <div class="layui-input-inline">
@@ -81,7 +95,12 @@
                                    autocomplete="off" class="layui-input">
                         </div>
                     </div>-->
-
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">是否发布</label>
+                        <div class="layui-input-block">
+                            <input type="checkbox" name="isDelete" value="0" title="发布"  <#if (product.isDelete == 0)> checked=""</#if> />
+                        </div>
+                    </div>
                     <div class="layui-form-item layui-form-text">
                         <label class="layui-form-label">详情简介</label>
                         <div class="layui-input-block">

@@ -73,4 +73,8 @@ public class BkProductVo implements Serializable {
      */
     private Integer isDelete;
 
+    private  String link;
+
+    private String linkCode;
+
 }

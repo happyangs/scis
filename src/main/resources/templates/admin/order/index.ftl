@@ -16,9 +16,6 @@
         .layui-laypage > * {
             float: left;
         }
-        .layui-field-title .layui-field-box{
-            padding: 10px 20px 10px 30px;
-        }
         .layui-table-cell{
             padding-top: 4px;
             height: 45px;
@@ -38,9 +35,6 @@
 <body>
 
 <fieldset id="dataList" class="layui-elem-field layui-field-title sys-list-field">
-    <legend style="text-align:center;">订单列表</legend>
-
-
     <div class="layui-row">
         <div class="layui-form layui-col-md12 star-so">
             <input class="layui-input" placeholder="产品ID" name="productId" id="productId">
