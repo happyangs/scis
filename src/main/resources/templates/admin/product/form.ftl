@@ -22,13 +22,13 @@
                 <form id="form1" class="layui-form" lay-filter="form">
 
                     <div class="layui-form-item">
-                        <input type="hidden" name="id" value="${product.id}" >
+                        <input type="hidden" name="id" value="${(product.id?c)!}" >
                     </div>
 
                     <div class="layui-form-item" style="margin-top: 10px">
                         <label class="layui-form-label">产品类型</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="productType" lay-verify="required|number"  placeholder="请输入产品类型" value="${product.productType}"
+                            <input type="text" name="productType" lay-verify="required|number"  placeholder="请输入产品类型" value="${(product.productType?c)!}"
                                    autocomplete="off" class="layui-input ">
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">总张数</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="htmlNum" lay-verify="required|number" placeholder="请输入总张数" value="${product.htmlNum}"
+                            <input type="text" name="htmlNum" lay-verify="required|number" placeholder="请输入总张数" value="${(product.htmlNum?c)!}"
                                    autocomplete="off" class="layui-input">
                         </div>
                     </div>

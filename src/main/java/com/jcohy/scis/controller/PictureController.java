@@ -85,7 +85,7 @@ public class PictureController {
     @ResponseBody
     public JsonResult del(@PathVariable("id") Integer id){
         try {
-            majorService.delete(id);
+            pictureService.delete(id);
         } catch (Exception e) {
             e.printStackTrace();
             return JsonResult.fail("删除失败");

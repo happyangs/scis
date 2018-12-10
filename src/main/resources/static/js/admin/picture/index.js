@@ -89,12 +89,12 @@ layui.define(['laypage', 'layer',  'table','common','util','form'], function (ex
             $.ajax({
                 type: "DELETE",
                 dataType: "json",
-                url: "/admin/major/" + id + "/del",
+                url: "/admin/picture/" + id + "/del",
                 success: function (ret) {
                     if (ret.isOk) {
                         layer.msg("操作成功", {time: 2000}, function () {
                             layer.close(index);
-                            window.location.href = "/admin/major/index";
+                            window.location.href = "/admin/picture/index";
                         });
                     } else {
                         layer.msg(ret.msg, {time: 2000});
@@ -105,4 +105,7 @@ layui.define(['laypage', 'layer',  'table','common','util','form'], function (ex
     }
 
     exports('picture/index', datalist);
+
+    $("#productId").text(1022);
+    $('#search').click()
 });

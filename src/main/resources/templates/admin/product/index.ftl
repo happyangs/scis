@@ -26,20 +26,17 @@
         .star-so{
             text-align: center;
             margin-bottom: 10px;
-            margin-top: 40px;
+            margin-top: 10px;
         }
         .star-so input.layui-input{
             width: 200px;
             display: inline-block;
         }
-
     </style>
 </head>
 <body>
 
 <fieldset id="dataList" class="layui-elem-field layui-field-title sys-list-field">
-    <legend style="text-align:center;">产品列表</legend>
-
 
     <div class="layui-row">
         <div class="layui-form layui-col-md12 star-so">
@@ -51,10 +48,10 @@
         </div>
     </div>
 
-    <div style="padding: 40px 0px 0px 80px;">
+    <div style="padding: 0px 0px 0px 30px;">
         <div class="layui-inline">
             <div class="layui-input-inline" style="width:auto">
-                <a id="addProduct" class="layui-btn layui-btn-normal">添加</a>
+                <a id="addProduct" class="layui-btn layui-btn-normal">添加作品</a>
             </div>
         </div>
     </div>

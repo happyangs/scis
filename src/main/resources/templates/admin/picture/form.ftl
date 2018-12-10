@@ -27,7 +27,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">产品ID</label>
         <div class="layui-input-inline">
-            <input type="text" name="productId" lay-verify="required" placeholder="请输入产品ID" value="${picture.productId}" autocomplete="off" class="layui-input">
+            <input type="text" name="productId" lay-verify="required" placeholder="请输入产品ID" value="${(picture.productId?c)!}" autocomplete="off" class="layui-input">
         </div>
     </div>
 
