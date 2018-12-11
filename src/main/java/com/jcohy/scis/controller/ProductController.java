@@ -49,8 +49,8 @@ public class ProductController {
         return "admin/product/form";
     }
 
-    @GetMapping("/sendfrom")
-    public String send(@RequestParam Integer productId, ModelMap map){
+    @GetMapping("/send")
+    public String send(){
 
         return "admin/product/send";
     }
