@@ -10,19 +10,19 @@ layui.define([ 'layer',  'table','common'], function (exports) {
         ,height: 655
         ,cols: [[ //表头
              {field: 'id',type: 'checkbox', align:'center',unresize:true}
-            ,{field: 'productId', align:'center', title: '产品ID',width:80,unresize:true}
-            ,{field: 'productType', align:'center', title: '类型',width:65,unresize:true}
-            ,{field: 'productName', align:'center', title: '名称',unresize:true}
+            ,{field: 'productId', align:'center', title: '产品ID',width:90,unresize:true}
+            ,{field: 'productType', align:'center', title: '类型',width:80,unresize:true}
+            ,{field: 'productName', align:'center', title: '名称',width:150,unresize:true}
             ,{field: 'price', align:'center', title: '价格',width:80,unresize:true,sort: true}
-            ,{field: 'htmlNum', align:'center', title: '张数',width:65,unresize:true}
-            ,{field: 'showPath', align:'center', title: '首图',width:100,unresize:true}
-            ,{field: 'productDesc', align:'center', title: '描述',unresize:true}
-            ,{field: 'productSynopsis', align:'center', title: '简介',unresize:true}
-            ,{field: 'link', align:'center', title: '链接',unresize:true}
-            ,{field: 'linkCode', align:'center', title: '提取码',width:100,unresize:true}
-            ,{field: 'addTime', align:'center', title: '添加时间',unresize:true}
-            ,{field: 'isDelete', align:'center', title: '开关',width:65,unresize:true}
-            ,{fixed: 'right',  title:'操作',align:'center', width:180,toolbar: '#operator',unresize:true}
+            ,{field: 'htmlNum', align:'center', title: '张数',width:60,unresize:true}
+            ,{field: 'showPath', align:'center', title: '首图',width:130,unresize:true}
+            ,{field: 'productDesc', align:'center', title: '描述',width:120,unresize:true}
+            ,{field: 'productSynopsis', align:'center', title: '简介',width:120,unresize:true}
+            ,{field: 'link', align:'center', title: '链接',width:150,unresize:true}
+            ,{field: 'linkCode', align:'center', title: '提取码',width:80,unresize:true}
+            ,{field: 'addTime', align:'center', title: '添加时间',width:130,unresize:true}
+            ,{field: 'isDelete', align:'center', title: '开关',width:80,unresize:true}
+            ,{fixed: 'right',  title:'操作',align:'center', width:250,toolbar: '#operator',unresize:true}
         ]]
         ,page: true //开启分页
     });
@@ -34,6 +34,8 @@ layui.define([ 'layer',  'table','common'], function (exports) {
             del(data.id);
         } else if(obj.event === 'edit'){
             common.frame_show('编辑','/product/form?id='+data.id);
+        } else if(obj.event === 'send'){
+            common.frame_show('发送','/product/send?id='+data.id+'&productName='+data.productName);
         }
     });
 
@@ -46,14 +48,14 @@ layui.define([ 'layer',  'table','common'], function (exports) {
         }, 500);
     });
 
-    $('#send').click(function () {
-        alert(1)
-        var index = layer.load(1);
-        setTimeout(function () {
-            layer.close(index);
-            common.frame_show('发送','/product/send');
-        }, 500);
-    });
+    // 发送
+    // $('#send').click(function () {
+    //     var index = layer.load(1);
+    //     setTimeout(function () {
+    //         layer.close(index);
+    //         common.frame_show('发送','/product/send');
+    //     }, 500);
+    // });
 
     //批量删除数据
     $('#deleteAll').click(function () {

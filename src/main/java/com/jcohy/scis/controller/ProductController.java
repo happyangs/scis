@@ -5,6 +5,7 @@ import com.jcohy.scis.common.PageResponse;
 import com.jcohy.scis.model.*;
 import com.jcohy.scis.service.ProductService;
 import com.jcohy.scis.utils.JsonUtil;
+import com.jcohy.scis.utils.SimpleMailSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private SimpleMailSender simpleMailSender;
 
     @GetMapping("/list")
     @ResponseBody
@@ -49,12 +53,14 @@ public class ProductController {
         return "admin/product/form";
     }
 
-    @GetMapping("/sendfrom")
-    public String send(@RequestParam Integer productId, ModelMap map){
-
+    @GetMapping("/send")
+    public String send(@RequestParam(required = false) Integer id,
+                       @RequestParam(required = false) String productName,
+                       ModelMap map){
+        map.put("id",id);
+        map.put("productName",productName);
         return "admin/product/send";
     }
-
 
     @PostMapping("/insert")
     @ResponseBody
@@ -67,6 +73,14 @@ public class ProductController {
     @ResponseBody
     public JsonResult delete(@RequestParam(required = false) Integer id){
         return productService.delete(id);
+    }
+
+    @PostMapping("/send/to")
+    @ResponseBody
+    public JsonResult sendTo(BkSendReq bkSendReq){
+        logger.info(bkSendReq.getBuyerEmail()+bkSendReq.getBuyerSchool()+bkSendReq.getId());
+        simpleMailSender.sendText(bkSendReq.getBuyerEmail(),bkSendReq.getBuyerSchool());
+       return JsonResult.ok();
     }
 
 }

@@ -50,9 +50,6 @@
             <div class="layui-input-inline" style="width:auto">
                 <a id="addProduct" class="layui-btn layui-btn-normal">添加作品</a>
             </div>
-            <div class="layui-input-inline" style="width:auto">
-                <a id="send" class="layui-btn layui-btn-normal">发送</a>
-            </div>
         </div>
     </div>
 
@@ -63,6 +60,7 @@
             <script type="text/html" id="operator">
                 <a class="layui-btn" lay-event="edit">编辑</a>
                 <a class="layui-btn layui-btn-danger " lay-event="del">删除</a>
+                <a class="layui-btn layui-btn-warm " lay-event="send">发送</a>
             </script>
 
         </div>

@@ -42,6 +42,29 @@
         return false;
     });
 
+    //监听登陆提交
+    form.on('submit(sendTo)', function (data) {
+        alert(1)
+        // $.ajax({
+        //     type: "POST",
+        //     dataType: "json",
+        //     url: "/product/insert",
+        //     data: data.field,
+        //     success: function(ret){
+        //         if(ret.isOk){
+        //             layer.msg("操作成功", {time: 2000},function(){
+        //                 var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+        //                 parent.layer.close(index);
+        //                 window.parent.location.href="/admin/product/index";
+        //             });
+        //         }else{
+        //             layer.msg(ret.msg, {time: 2000});
+        //         }
+        //     }
+        // });
+        return false;
+    });
+
 
     form.on('select(depts)', function(data){
         // console.log(data.elem); //得到select原始DOM对象
