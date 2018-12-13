@@ -1,5 +1,6 @@
 package com.jcohy.scis.utils;
 
+import com.jcohy.scis.model.SendEmailVo;
 import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -34,16 +35,14 @@ public class SimpleMailSender implements CommandLineRunner {
     /**
      * 发送文本
      */
-    public void sendText(String to,String text) {
+    public void sendText(SendEmailVo sendEmailVo) {
         String from = environment.getProperty("spring.mail.username");
-//        String to = "ahuthj@163.com";
-
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setFrom(from);
-        msg.setTo(to);
+        msg.setTo(sendEmailVo.getToEmail());
 
-        msg.setSubject("first email from yourself");
-        msg.setText(text);
+        msg.setSubject(sendEmailVo.getSubject());
+        msg.setText(sendEmailVo.getContent());
 
         this.mailSender.send(msg);
     }

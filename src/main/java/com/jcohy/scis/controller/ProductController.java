@@ -75,12 +75,20 @@ public class ProductController {
         return productService.delete(id);
     }
 
+    /**
+     * 发送作品
+     * @param bkSendReq
+     * @return
+     */
     @PostMapping("/send/to")
     @ResponseBody
     public JsonResult sendTo(BkSendReq bkSendReq){
-        logger.info(bkSendReq.getBuyerEmail()+bkSendReq.getBuyerSchool()+bkSendReq.getId());
+        BkProductVo bkProductVo = productService.queryById(bkSendReq.getId());
+        if (bkProductVo == null){
+            return JsonResult.fail("没查到作品");
+        }
         simpleMailSender.sendText(bkSendReq.getBuyerEmail(),bkSendReq.getBuyerSchool());
-       return JsonResult.ok();
+        return JsonResult.ok();
     }
 
 }
