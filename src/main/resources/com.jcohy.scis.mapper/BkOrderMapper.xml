@@ -61,8 +61,15 @@
      ORDER BY update_time DESC
   </select>
 
-  <select id="queryMaxOrderId" parameterType="com.jcohy.scis.model.BkOrderReq" resultMap="BaseResultMap">
-
+  <select id="queryTodayOrders" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM
+      bk_order a
+    WHERE a.`add_time` > DATE_FORMAT(NOW(),'%Y-%m-%d')
+    <![CDATA[ AND a.`add_time` <  DATE_FORMAT(DATE_SUB(NOW(),INTERVAL -1 DAY),'%Y-%m-%d') ]]>
+    AND a.`is_delete` = 0
+    ORDER BY a.`add_time` DESC
   </select>
 
   <insert id="insertSelective" parameterType="com.jcohy.scis.model.BkOrderReq">

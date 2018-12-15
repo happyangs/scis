@@ -29,8 +29,16 @@ public class OrderServiceImpl implements OrderService {
         return PageResponse.buildSuccessResponseWithResult(list,total.intValue());
     }
 
+
+
     @Override
     public void insert(BkOrderReq req) {
         bkOrderMapper.insertSelective(req);
+    }
+
+    @Override
+    public List<BkOrderVo> queryTodayOrders() {
+        List<BkOrderVo> list = bkOrderMapper.queryTodayOrders();
+        return list;
     }
 }

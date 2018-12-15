@@ -10,7 +10,7 @@ layui.define([ 'layer',  'table','common'], function (exports) {
         ,height: 655
         ,cols: [[ //表头
             {type: 'checkbox', align:'center',unresize:true}
-            ,{field: 'orderId', align:'center', title: '订单号',width:100,unresize:true}
+            ,{field: 'orderId', align:'center', title: '订单号',width:120,unresize:true}
             ,{field: 'productId', align:'center', title: '作品ID',width:80,unresize:true}
             ,{field: 'productName', align:'center', title: '作品',unresize:true}
             ,{field: 'price', align:'center', title: '价格',width:100,unresize:true,sort: true}

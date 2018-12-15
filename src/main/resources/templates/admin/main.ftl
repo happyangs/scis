@@ -113,6 +113,12 @@
                             <dd><a href="javascript:;" data-url="${ctx!}/admin/picture/index" data-id="16">作品图片</a></dd>
                         </dl>
                     </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;"><i class="fa fa-plus-square"></i>系统管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;" data-url="${ctx!}/admin/type/index" data-id="17">系统配置</a></dd>
+                        </dl>
+                    </li>
                 </ul>
             </div>
         </div>

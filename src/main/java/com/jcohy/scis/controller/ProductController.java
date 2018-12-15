@@ -1,20 +1,25 @@
 package com.jcohy.scis.controller;
 
+import com.jcohy.date.DateUtils;
 import com.jcohy.scis.common.JsonResult;
 import com.jcohy.scis.common.PageResponse;
 import com.jcohy.scis.mapper.BkOrderMapper;
 import com.jcohy.scis.model.*;
 import com.jcohy.scis.service.OrderService;
 import com.jcohy.scis.service.ProductService;
+import com.jcohy.scis.utils.DateUtil;
 import com.jcohy.scis.utils.JsonUtil;
 import com.jcohy.scis.utils.SimpleMailSender;
+import org.apache.commons.lang3.time.DateFormatUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -101,23 +106,31 @@ public class ProductController {
         sendEmailVo.setSubject(bkProductVo.getProductName());
         simpleMailSender.sendText(sendEmailVo);
 
-        // 查询今日最大订单号+1
-        orderService.queryByCondition()
-        // 添加订单
+        // 查询今日订单
         Integer orderId = null;
+        List<BkOrderVo> orderList = orderService.queryTodayOrders();
+        if (CollectionUtils.isEmpty(orderList)){
+            orderId = Integer.valueOf(DateUtil.formatDate(new Date(),DateUtil.YYYMMDD)) * 100 + 1;
+        } else {
+            BkOrderVo bkOrderVo = orderList.get(0);
+            orderId = bkOrderVo.getOrderId() + 1;
+        }
+
+        // 添加订单
         BkOrderReq order = new BkOrderReq();
+        order.setOrderId(orderId);
         order.setProductId(bkProductVo.getProductId());
-        order.setBuyerSchool(bkSendReq.getBuyerSchool());
-        order.setBuyerEmail(bkSendReq.getBuyerEmail());
-        order.setAddTime(new Date());
-        order.setSendTime(new Date());
+        order.setProductName(bkProductVo.getProductName());
         order.setPrice(bkProductVo.getPrice());
         order.setProductType(bkProductVo.getProductType());
-        order.setProductName(bkProductVo.getProductName());
-        order.setOrderId(orderId);
+        order.setBuyerSchool(bkSendReq.getBuyerSchool());
+        order.setBuyerEmail(bkSendReq.getBuyerEmail());
+        order.setSendTime(new Date());
+        order.setAddTime(new Date());
+        order.setUpdateTime(new Date());
+        order.setSalesMan("华键");
         orderService.insert(order);
 
         return JsonResult.ok();
     }
-
 }

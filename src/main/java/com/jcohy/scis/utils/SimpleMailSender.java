@@ -10,8 +10,6 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.context.Context;
 
 import javax.mail.internet.MimeMessage;
 import java.io.File;
@@ -28,9 +26,6 @@ public class SimpleMailSender implements CommandLineRunner {
 
     @Autowired
     private Environment environment;
-
-    @Autowired
-    private TemplateEngine templateEngine;
 
     /**
      * 发送文本
@@ -56,32 +51,32 @@ public class SimpleMailSender implements CommandLineRunner {
      * 发送页面模板-图片内嵌
      * @throws MessagingException
      */
-    public void sendTemplateMail() throws MessagingException {
-
-        String from = environment.getProperty("spring.mail.username");
-        String to = "ahuthj@163.com";
-
-        // 使用Mime消息体
-        MimeMessage message = mailSender.createMimeMessage();
-
-        MimeMessageHelper helper = null;
-        try {
-            helper = new MimeMessageHelper(message, true);
-
-            helper.setFrom(from);
-            helper.setTo(to);
-
-            helper.setSubject("first html report from yourself");
-
-            Context context = new Context();
-            String text = templateEngine.process("thymeleaf/mail/template", context);
-            helper.setText(text, true);
-            helper.addInline("soft", new FileSystemResource("D:/Desktop/515942841728020169.jpg"));
-            mailSender.send(message);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    public void sendTemplateMail() throws MessagingException {
+//
+//        String from = environment.getProperty("spring.mail.username");
+//        String to = "ahuthj@163.com";
+//
+//        // 使用Mime消息体
+//        MimeMessage message = mailSender.createMimeMessage();
+//
+//        MimeMessageHelper helper = null;
+//        try {
+//            helper = new MimeMessageHelper(message, true);
+//
+//            helper.setFrom(from);
+//            helper.setTo(to);
+//
+//            helper.setSubject("first html report from yourself");
+//
+//            Context context = new Context();
+//            String text = templateEngine.process("thymeleaf/mail/template", context);
+//            helper.setText(text, true);
+//            helper.addInline("soft", new FileSystemResource("D:/Desktop/515942841728020169.jpg"));
+//            mailSender.send(message);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     /**
      * 发送附件

@@ -13,4 +13,6 @@ public interface BkOrderMapper {
     List<BkOrderVo> selectByCondition(BkOrderReq req);
 
     void insertSelective(BkOrderReq req);
+
+    List<BkOrderVo> queryTodayOrders();
 }
