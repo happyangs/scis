@@ -2,7 +2,9 @@ package com.jcohy.scis.controller;
 
 import com.jcohy.scis.common.JsonResult;
 import com.jcohy.scis.common.PageResponse;
+import com.jcohy.scis.mapper.BkOrderMapper;
 import com.jcohy.scis.model.*;
+import com.jcohy.scis.service.OrderService;
 import com.jcohy.scis.service.ProductService;
 import com.jcohy.scis.utils.JsonUtil;
 import com.jcohy.scis.utils.SimpleMailSender;
@@ -14,6 +16,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,6 +33,9 @@ public class ProductController {
 
     @Autowired
     private SimpleMailSender simpleMailSender;
+
+    @Autowired
+    private OrderService orderService;
 
     @GetMapping("/list")
     @ResponseBody
@@ -87,7 +93,30 @@ public class ProductController {
         if (bkProductVo == null){
             return JsonResult.fail("没查到作品");
         }
-        simpleMailSender.sendText(bkSendReq.getBuyerEmail(),bkSendReq.getBuyerSchool());
+        SendEmailVo sendEmailVo = new SendEmailVo();
+        sendEmailVo.setToEmail(bkSendReq.getBuyerEmail());
+        StringBuffer sb = new StringBuffer();
+        sb.append("点击下载："+bkProductVo.getLink()+" 提取码："+bkProductVo.getLinkCode());
+        sendEmailVo.setContent(sb.toString());
+        sendEmailVo.setSubject(bkProductVo.getProductName());
+        simpleMailSender.sendText(sendEmailVo);
+
+        // 查询今日最大订单号+1
+        orderService.queryByCondition()
+        // 添加订单
+        Integer orderId = null;
+        BkOrderReq order = new BkOrderReq();
+        order.setProductId(bkProductVo.getProductId());
+        order.setBuyerSchool(bkSendReq.getBuyerSchool());
+        order.setBuyerEmail(bkSendReq.getBuyerEmail());
+        order.setAddTime(new Date());
+        order.setSendTime(new Date());
+        order.setPrice(bkProductVo.getPrice());
+        order.setProductType(bkProductVo.getProductType());
+        order.setProductName(bkProductVo.getProductName());
+        order.setOrderId(orderId);
+        orderService.insert(order);
+
         return JsonResult.ok();
     }
 

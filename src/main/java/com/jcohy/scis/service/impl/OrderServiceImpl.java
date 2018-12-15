@@ -28,4 +28,9 @@ public class OrderServiceImpl implements OrderService {
         Long total = pageInfo.getTotal();
         return PageResponse.buildSuccessResponseWithResult(list,total.intValue());
     }
+
+    @Override
+    public void insert(BkOrderReq req) {
+        bkOrderMapper.insertSelective(req);
+    }
 }

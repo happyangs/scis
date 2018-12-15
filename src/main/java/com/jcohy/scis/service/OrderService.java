@@ -10,4 +10,6 @@ import com.jcohy.scis.model.BkOrderVo;
 public interface OrderService {
 
     PageResponse<BkOrderVo> queryByCondition(BkOrderReq bkOrderReq);
+
+    void insert(BkOrderReq req);
 }

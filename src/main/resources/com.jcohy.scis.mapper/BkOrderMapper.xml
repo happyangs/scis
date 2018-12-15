@@ -61,7 +61,11 @@
      ORDER BY update_time DESC
   </select>
 
-  <insert id="insertSelective" parameterType="com.jcohy.scis.model.BkOrderVo">
+  <select id="queryMaxOrderId" parameterType="com.jcohy.scis.model.BkOrderReq" resultMap="BaseResultMap">
+
+  </select>
+
+  <insert id="insertSelective" parameterType="com.jcohy.scis.model.BkOrderReq">
     insert into bk_order
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -158,7 +162,8 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jcohy.scis.model.BkOrderVo">
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.jcohy.scis.model.BkOrderVo">
     update bk_order
     <set>
       <if test="orderId != null">
