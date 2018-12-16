@@ -10,20 +10,29 @@ layui.define(['laypage', 'layer','table','common','util','form'], function (expo
         elem: '#type'
         ,height: 'full-200'
         ,method:'GET'
-        ,url: '/admin/type/list' //数据接口
-        ,page: true //开启分页
+        ,width: 380
+        ,url: '/admin/config/list'
         ,cols: [[ //表头
-            {type: 'checkbox', align:'center',unresize:true}
-            ,{field: 'id', align:'center', title: 'ID', sort: true,unresize:true}
-            ,{field: 'num', align:'center', title: '编号',unresize:true}
-            ,{field: 'name', align:'center', title: '名称',unresize:true}
-            ,{field: 'number', align:'center', title: '数量',sort: true,unresize:true}
-            // ,{field: 'type', align:'center', title: '类型',sort: true,unresize:true,templet: '<div>{{d.type.name}}</div>'}
-            // ,{field: 'status', align:'center', title: '是否可见',unresize:true,templet: '#choicesTpl'}
-            ,{field: 'createDate', title: '创建日期',unresize:true}
-            ,{fixed: 'right',  title:'操作',align:'center', toolbar: '#operator',unresize:true}
+            {type: 'checkbox', width:60,align:'center',unresize:true}
+            ,{field: 'configType', width:120,templet: '#configType',align:'center', title: '类型名称',unresize:true}
+            ,{fixed: 'right',  width:200,title:'操作',align:'center', toolbar: '#operator',unresize:true}
         ]]
     });
+
+    table.render({
+        elem: '#type1'
+        ,height: 'full-200'
+        ,method:'GET'
+        ,width: 460
+        ,url: '/admin/config/list' //数据接口
+        ,cols: [[ //表头
+            {type: 'checkbox', width:60,align:'center',unresize:true}
+            ,{field: 'num', width:80,align:'center', title: '子类型',unresize:true}
+            ,{field: 'name', width:120,align:'center', title: '子类型名称',unresize:true}
+            ,{fixed: 'right',  width:200,title:'操作',align:'center', toolbar: '#operator',unresize:true}
+        ]]
+    });
+
 
     //监听工具条
     table.on('tool(table)', function(obj){
@@ -31,7 +40,7 @@ layui.define(['laypage', 'layer','table','common','util','form'], function (expo
         if(obj.event === 'del'){
             del(data.id);
         } else if(obj.event === 'edit'){
-            common.frame_show('分类编辑','/admin/type/form?id='+data.id,'720','430');
+            common.frame_show('分类编辑','/admin/config/form?id='+data.id,'720','430');
         }
     });
     //监听状态
@@ -44,7 +53,7 @@ layui.define(['laypage', 'layer','table','common','util','form'], function (expo
             success: function (ret) {
                 if (ret.isOk) {
                     layer.msg("操作成功", {time: 2000}, function () {
-                        window.location.href = "/admin/type/index";
+                        window.location.href = "/admin/config/index";
                     });
                 } else {
                     layer.msg(ret.msg, {time: 2000});
@@ -71,7 +80,7 @@ layui.define(['laypage', 'layer','table','common','util','form'], function (expo
         var index = layer.load(1);
         setTimeout(function () {
             layer.close(index);
-            common.frame_show('分类添加','/admin/type/form','720','430');
+            common.frame_show('分类添加','/admin/config/form','720','430');
             // layer.msg('打开添加窗口');
         }, 500);
     });
@@ -94,7 +103,7 @@ layui.define(['laypage', 'layer','table','common','util','form'], function (expo
             });
         },
         editData: function (id) {
-            common.frame_show('分类编辑','/admin/type/form?id='+id,'720','430');
+            common.frame_show('分类编辑','/admin/config/form?id='+id,'720','430');
         }
     };
     function del(id) {
@@ -102,12 +111,12 @@ layui.define(['laypage', 'layer','table','common','util','form'], function (expo
             $.ajax({
                 type: "DELETE",
                 dataType: "json",
-                url: "/admin/type/" + id + "/del",
+                url: "/admin/config/" + id + "/del",
                 success: function (ret) {
                     if (ret.isOk) {
                         layer.msg("操作成功", {time: 2000}, function () {
                             layer.close(index);
-                            window.location.href = "/admin/type/index";
+                            window.location.href = "/admin/config/index";
                         });
                     } else {
                         layer.msg(ret.msg, {time: 2000});
@@ -117,5 +126,5 @@ layui.define(['laypage', 'layer','table','common','util','form'], function (expo
         });
     }
 
-    exports('type/update', datalist);
+    exports('config/index', datalist);
 });

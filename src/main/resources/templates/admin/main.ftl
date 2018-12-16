@@ -116,7 +116,7 @@
                     <li class="layui-nav-item">
                         <a href="javascript:;"><i class="fa fa-plus-square"></i>系统管理</a>
                         <dl class="layui-nav-child">
-                            <dd><a href="javascript:;" data-url="${ctx!}/admin/type/index" data-id="17">系统配置</a></dd>
+                            <dd><a href="javascript:;" data-url="${ctx!}/admin/config/index" data-id="17">系统配置</a></dd>
                         </dl>
                     </li>
                 </ul>

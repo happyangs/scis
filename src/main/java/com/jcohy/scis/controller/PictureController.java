@@ -1,22 +1,18 @@
 package com.jcohy.scis.controller;
 
 import com.jcohy.scis.common.JsonResult;
-import com.jcohy.scis.common.PageJson;
 import com.jcohy.scis.common.PageResponse;
-import com.jcohy.scis.model.*;
+import com.jcohy.scis.model.BkProductPictureReq;
+import com.jcohy.scis.model.BkProductPictureVo;
 import com.jcohy.scis.service.DeptService;
 import com.jcohy.scis.service.MajorService;
 import com.jcohy.scis.service.PictureService;
-import com.jcohy.scis.utils.JsonUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by jiac on 2018/5/25.

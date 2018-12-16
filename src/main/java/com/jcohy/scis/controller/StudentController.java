@@ -109,14 +109,14 @@ public class StudentController extends BaseController{
 
     @GetMapping("/form")
     public String form(@RequestParam(required = false) Integer id, ModelMap map){
-        List<Teacher> teachers = teacherService.findAll();
-        List<Type> types = typeService.findAll();
-        map.put("types",types);
-        map.put("teachers",teachers);
-        if(id != null){
-            Project project = projectService.findById(id);
-            map.put("project",project);
-        }
+//        List<Teacher> teachers = teacherService.findAll();
+//        List<Type> types = typeService.findAll();
+//        map.put("types",types);
+//        map.put("teachers",teachers);
+//        if(id != null){
+//            Project project = projectService.findById(id);
+//            map.put("project",project);
+//        }
         return "student/form";
     }
 

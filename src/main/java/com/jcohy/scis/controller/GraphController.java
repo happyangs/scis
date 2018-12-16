@@ -44,23 +44,23 @@ public class GraphController {
     public JsonResult graph(){
         Graph graph = new Graph();
         List<Project> projects = projectService.findAll();
-        List<Type> types = typeService.findAll();
+//        List<Type> types = typeService.findAll();
         List<Dept> depts = deptService.findAll();
         List<Data> typeMap = new ArrayList<>();
         List<Data> deptMap = new ArrayList<>();
         List<Data> yearMap = new ArrayList<>();
-        for(Type type:types){
-            Data data = new Data();
-            List<Project> service = projectService.findByType(type);
-            if(service.size() == 0){
-                data.setLabel(type.getName());
-                data.setValue(0);
-            }else{
-                data.setLabel(type.getName());
-                data.setValue(service.size());
-            }
-            typeMap.add(data);
-        }
+//        for(Type type:types){
+//            Data data = new Data();
+//            List<Project> service = projectService.findByType(type);
+//            if(service.size() == 0){
+//                data.setLabel(type.getName());
+//                data.setValue(0);
+//            }else{
+//                data.setLabel(type.getName());
+//                data.setValue(service.size());
+//            }
+//            typeMap.add(data);
+//        }
 
 
         for(Dept dept:depts){

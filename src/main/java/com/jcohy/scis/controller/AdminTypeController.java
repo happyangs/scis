@@ -33,58 +33,58 @@ public class AdminTypeController {
     @GetMapping("/list")
     @ResponseBody
     public PageJson<Type> all(ModelMap map){
-        List<Type> typeList = typeService.findAll();
+//        List<Type> typeList = typeService.findAll();
         PageJson<Type> page = new PageJson<>();
-        page.setCode(0);
-        page.setMsg("成功");
-        page.setCount(typeList.size());
-        page.setData(typeList);
+//        page.setCode(0);
+//        page.setMsg("成功");
+//        page.setCount(typeList.size());
+//        page.setData(typeList);
         return page;
     }
 
     @GetMapping("/form")
     public String form(@RequestParam(required = false) Integer id, ModelMap map){
 
-        if(id != null){
-            Type type = typeService.findById(id);
-            map.put("type",type);
-        }
+//        if(id != null){
+//            Type type = typeService.findById(id);
+//            map.put("type",type);
+//        }
         return "admin/type/form";
     }
 
     @PostMapping("/save")
     @ResponseBody
     public JsonResult save(Type type){
-        try {
-            if(type.getId() == null){
-                List<Type> num = typeService.findByNum(type.getNum());
-                if(num == null || num.size()>0){
-                    return JsonResult.fail("此类型已存在");
-                }
-            }
-            typeService.saveOrUpdate(type);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return JsonResult.fail(e.getMessage());
-        }
+//        try {
+//            if(type.getId() == null){
+//                List<Type> num = typeService.findByNum(type.getNum());
+//                if(num == null || num.size()>0){
+//                    return JsonResult.fail("此类型已存在");
+//                }
+//            }
+//            typeService.saveOrUpdate(type);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return JsonResult.fail(e.getMessage());
+//        }
         return JsonResult.ok();
     }
 
     @DeleteMapping("{id}/del")
     @ResponseBody
     public JsonResult del(@PathVariable("id") Integer id){
-        try {
-            Type type = typeService.findById(id);
-            List<Project> projects = projectService.findByType(type);
-            if(projects.size()>0){
-                return JsonResult.fail("此类别有项目引用，删除失败！！");
-            }else{
-                typeService.delete(id);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return JsonResult.fail("删除失败");
-        }
+//        try {
+//            Type type = typeService.findById(id);
+//            List<Project> projects = projectService.findByType(type);
+//            if(projects.size()>0){
+//                return JsonResult.fail("此类别有项目引用，删除失败！！");
+//            }else{
+//                typeService.delete(id);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return JsonResult.fail("删除失败");
+//        }
         return JsonResult.ok();
     }
 

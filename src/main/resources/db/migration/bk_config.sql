@@ -15,3 +15,6 @@ DEFAULT CHARACTER SET=utf8mb4 COLLATE=utf8mb4_general_ci
 ROW_FORMAT=COMPACT
 COMMENT='系统配置表'
 ;
+
+INSERT INTO bk_config(config_type,CODE,zh_name) VALUES('productType','1001','html/css');
+INSERT INTO bk_config(config_type,CODE,zh_name) VALUES('productType','1002','数据库Web');

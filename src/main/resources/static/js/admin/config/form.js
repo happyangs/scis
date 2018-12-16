@@ -18,7 +18,7 @@ layui.define(['element', 'layer', 'form'], function (exports) {
         $.ajax({
             type: "POST",
             dataType: "json",
-            url: "/admin/type/save",
+            url: "/admin/config/save",
             data: data.field,
             success: function(ret){
                 console.log(ret);
@@ -26,7 +26,7 @@ layui.define(['element', 'layer', 'form'], function (exports) {
                     layer.msg("操作成功", {time: 2000},function(){
                         var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
                         parent.layer.close(index);
-                        window.parent.location.href="/admin/type/update";
+                        window.parent.location.href="/admin/config/index";
                     });
                 }else{
                     layer.msg(ret.msg, {time: 2000});
@@ -35,5 +35,5 @@ layui.define(['element', 'layer', 'form'], function (exports) {
         });
         return false;
     });
-    exports('type/form', {});
+    exports('config/form', {});
 });

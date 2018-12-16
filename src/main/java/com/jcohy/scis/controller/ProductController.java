@@ -1,16 +1,12 @@
 package com.jcohy.scis.controller;
 
-import com.jcohy.date.DateUtils;
 import com.jcohy.scis.common.JsonResult;
 import com.jcohy.scis.common.PageResponse;
-import com.jcohy.scis.mapper.BkOrderMapper;
 import com.jcohy.scis.model.*;
 import com.jcohy.scis.service.OrderService;
 import com.jcohy.scis.service.ProductService;
 import com.jcohy.scis.utils.DateUtil;
-import com.jcohy.scis.utils.JsonUtil;
 import com.jcohy.scis.utils.SimpleMailSender;
-import org.apache.commons.lang3.time.DateFormatUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +15,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -87,7 +81,7 @@ public class ProductController {
     }
 
     /**
-     * 发送作品
+     * 邮箱发送作品
      * @param bkSendReq
      * @return
      */

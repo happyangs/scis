@@ -65,7 +65,7 @@ public class PageResponse<T> implements Serializable {
         return this;
     }
 
-    public PageResponse setMsg(int count) {
+    public PageResponse setCount(int count) {
         this.count = count;
         return this;
     }
