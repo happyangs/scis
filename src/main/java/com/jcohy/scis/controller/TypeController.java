@@ -20,7 +20,7 @@ import java.util.List;
  * Created by Bryant on 2018.12.15
  */
 @Controller
-@RequestMapping("/admin/config")
+@RequestMapping("/")
 public class TypeController {
     @Autowired
     private TypeService typeService;
