@@ -29,13 +29,13 @@
             <section class="panel panel-padding">
                 <form id="form1" class="layui-form "  lay-filter="form">
                     <div class="layui-form-item">
-                        <input type="hidden" name="id"  value="${(student.id)!}" >
+                        <input type="hidden" name="id"  value="${(config.id)!}" >
                     </div>
 
                     <div class="layui-form-item" style="margin-top: 10px">
                         <label class="layui-form-label">配置项</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="num" lay-verify="number"  placeholder="请输入学号" value="${config.configType}"
+                            <input type="text" name="configType" lay-verify="required"  placeholder="请输入配置项" value="${config.configType}"
                                    autocomplete="off" class="layui-input ">
                         </div>
                     </div>
@@ -43,7 +43,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">子类型编码</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="name" lay-verify="required" placeholder="请输入姓名" value="${(config.code?c)!}"
+                            <input type="text" name="code" lay-verify="required" placeholder="子类型编码" value="${config.code}"
                                    autocomplete="off" class="layui-input">
                         </div>
                     </div>
@@ -51,11 +51,10 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">子类型名称</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="password" lay-verify="required" placeholder="请输入密码" value="${config.zhName}"
+                            <input type="text" name="zhName" lay-verify="required" placeholder="子类型名称" value="${config.zhName}"
                                    autocomplete="off" class="layui-input">
                         </div>
                     </div>
-
 
                     <div class="layui-form-item">
                         <button class="layui-btn" lay-submit lay-filter="add">立即提交</button>
@@ -73,7 +72,7 @@
 <script type="text/javascript">
     layui.config({
         base: '${ctx}/js/'
-    }).use('admin/student/form');
+    }).use('admin/config/form');
 </script>
 </body>
 

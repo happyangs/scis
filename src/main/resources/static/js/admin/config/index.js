@@ -4,7 +4,7 @@ layui.define([ 'layer',  'table','common'], function (exports) {
         common = layui.common,
         table  = layui.table ;
     table.render({
-        elem: '#student'
+        elem: '#config'
         ,height: 'full-200'
         ,method:'GET'
         ,url: '/admin/config/list' //数据接口
@@ -31,7 +31,7 @@ layui.define([ 'layer',  'table','common'], function (exports) {
     });
 
     //添加数据
-    $('#addStudent').click(function () {
+    $('#addConfig').click(function () {
         var index = layer.load(1);
         setTimeout(function () {
             layer.close(index);
@@ -46,14 +46,16 @@ layui.define([ 'layer',  'table','common'], function (exports) {
 
     });
 
-    var dept,keyword,major='';
+    var configType,code;
     $('#search').click(function () {
-        keyword = $("#keyword").val();
-        table.reload('student', {
-            url: "/student/search"
-            ,where: {keyword:keyword} //设定异步数据接口的额外参数
-            // ,where: {keyword:keyword,dept:dept,major:major} //设定异步数据接口的额外参数
-            //,height: 300
+        configType = $("#configType").val();
+        code = $("#code").val();
+        table.reload('config', {
+            url: "/admin/config/list"
+            ,where: {
+                'configType' : configType,
+                'code':code
+            } //设定异步数据接口的额外参数
         });
     });
 

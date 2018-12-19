@@ -3,6 +3,8 @@ package com.jcohy.scis.model;
 import com.jcohy.scis.common.PageReq;
 import lombok.Data;
 
+import java.util.Date;
+
 /**
  *
  * @author Bryant
@@ -30,12 +32,12 @@ public class BkConfigReq extends PageReq {
     /**
      * 添加时间
      */
-    private String addTime;
+    private Date addTime;
 
     /**
      * 更新时间
      */
-    private String updateTime;
+    private Date updateTime;
 
     /**
      * 删除标记

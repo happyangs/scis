@@ -40,7 +40,8 @@
 <fieldset id="dataList" class="layui-elem-field layui-field-title sys-list-field">
     <div class="layui-row">
         <div class="layui-form layui-col-md12 star-so">
-            <input class="layui-input" placeholder="请输入姓名或者工号" name="keyword" id="keyword">
+            <input class="layui-input" placeholder="配置项" name="configType" id="configType">
+            <input class="layui-input" placeholder="子类型编码" name="code" id="code">
             <button class="layui-btn" id="search" "><i class="layui-icon">&#xe615;</i></button>
             <button class="layui-btn" style="position: relative;float: right;right: 100px;" onclick="javascript:location.replace(location.href)">
                 <i class="layui-icon">&#x1002;</i>
@@ -51,7 +52,7 @@
     <div style="padding: 40px 0px 0px 80px;">
         <div class="layui-inline">
             <div class="layui-input-inline" style="width:auto">
-                <a id="addStudent" class="layui-btn layui-btn-normal">添加</a>
+                <a id="addConfig" class="layui-btn layui-btn-normal">添加</a>
             </div>
         </div>
     </div>
@@ -60,7 +61,7 @@
     <div class="layui-field-box">
         <div id="dataContent" class="">
 
-            <table class="layui-hide" id="student" lay-filter="table"></table>
+            <table class="layui-hide" id="config" lay-filter="table"></table>
             <script type="text/html" id="operator">
                 <a class="layui-btn" lay-event="edit">编辑</a>
                 <a class="layui-btn layui-btn-danger " lay-event="del">删除</a>

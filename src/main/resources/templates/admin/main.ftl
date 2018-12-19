@@ -44,7 +44,7 @@
                         <a href="javascript:;"><i class="fa fa-home"></i>首页</a>
                     </li>
 
-                    <li class="layui-nav-item">
+                  <#--  <li class="layui-nav-item">
                         <a href="javascript:;"><i class="fa fa-user"></i>用户管理</a>
                         <dl class="layui-nav-child">
                             <dd><a href="javascript:;" data-url="${ctx!}/admin/student/index" data-id="1">学生信息管理</a></dd>
@@ -59,7 +59,7 @@
                             <dd><a href="javascript:;" data-url="${ctx!}/admin/project/index" data-id="4">我的项目</a></dd>
                             <dd><a href="javascript:;" data-url="${ctx!}/admin/allot/index" data-id="5">评审分配</a></dd>
                             <dd><a href="javascript:;" data-url="${ctx!}/project/history" data-id="6">历史项目</a></dd>
-                            <#--<dd><a href="javascript:;" data-url="${ctx!}/admin/project/index" data-id="5">项目审核</a></dd>-->
+                            &lt;#&ndash;<dd><a href="javascript:;" data-url="${ctx!}/admin/project/index" data-id="5">项目审核</a></dd>&ndash;&gt;
                         </dl>
                     </li>
 
@@ -98,23 +98,23 @@
                         <dl class="layui-nav-child">
                             <dd><a href="javascript:;" data-url="${ctx!}/admin/circular/index" data-id="13">发布通告</a></dd>
                         </dl>
-                    </li>
+                    </li>-->
 
                     <li class="layui-nav-item">
-                        <a href="javascript:;"><i class="fa"></i>订单管理</a>
+                        <a href="javascript:;"><i class="fa fa-file-text"></i>订单管理</a>
                         <dl class="layui-nav-child">
                             <dd><a href="javascript:;" data-url="${ctx!}/admin/order/index" data-id="14">订单明细</a></dd>
                         </dl>
                     </li>
                     <li class="layui-nav-item">
-                        <a href="javascript:;"><i class="fa"></i>作品管理</a>
+                        <a href="javascript:;"><i class="fa fa-plus-square"></i>作品管理</a>
                         <dl class="layui-nav-child">
                             <dd><a href="javascript:;" data-url="${ctx!}/admin/product/index" data-id="15">作品工坊</a></dd>
                             <dd><a href="javascript:;" data-url="${ctx!}/admin/picture/index" data-id="16">作品图片</a></dd>
                         </dl>
                     </li>
                     <li class="layui-nav-item">
-                        <a href="javascript:;"><i class="fa fa-plus-square"></i>系统管理</a>
+                        <a href="javascript:;"><i class="fa fa-gear fa-lg"></i>系统管理</a>
                         <dl class="layui-nav-child">
                             <dd><a href="javascript:;" data-url="${ctx!}/admin/config/index" data-id="17">系统配置</a></dd>
                         </dl>

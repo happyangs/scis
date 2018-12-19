@@ -6,8 +6,8 @@
     <result column="config_type" jdbcType="VARCHAR" property="configType" />
     <result column="code" jdbcType="INTEGER" property="code" />
     <result column="zh_name" jdbcType="VARCHAR" property="zhName" />
-    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="add_time" jdbcType="VARCHAR" property="addTime" />
+    <result column="update_time" jdbcType="VARCHAR" property="updateTime" />
     <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
   </resultMap>
 
@@ -22,13 +22,13 @@
       bk_config a
     WHERE 1 = 1
       AND a.`is_delete` = 0
-      <if test="id != null">
+      <if test="id != null and id != ''">
         AND a.`id` = #{id,jdbcType=INTEGER}
       </if>
-      <if test="configType != null">
+      <if test="configType != null and configType != ''">
         AND a.`config_type` = #{configType,jdbcType=VARCHAR}
       </if>
-      <if test="code != null">
+      <if test="code != null and code != ''">
         AND a.`code` =  #{code,jdbcType=INTEGER}
       </if>
   </select>
@@ -54,13 +54,13 @@
         #{id,jdbcType=INTEGER},
       </if>
       <if test="configType != null">
-        #{config_type,jdbcType=VARCHAR},
+        #{configType,jdbcType=VARCHAR},
       </if>
       <if test="code != null">
         #{code,jdbcType=INTEGER},
       </if>
       <if test="zhName != null">
-        #{zh_name,jdbcType=VARCHAR0},
+        #{zhName,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
