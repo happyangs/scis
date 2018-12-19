@@ -28,94 +28,34 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <section class="panel panel-padding">
                 <form id="form1" class="layui-form "  lay-filter="form">
-
                     <div class="layui-form-item">
                         <input type="hidden" name="id"  value="${(student.id)!}" >
                     </div>
 
-
                     <div class="layui-form-item" style="margin-top: 10px">
-                        <label class="layui-form-label">学号</label>
+                        <label class="layui-form-label">配置项</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="num" lay-verify="number"  placeholder="请输入学号" value="${(student.num?c)!}"
+                            <input type="text" name="num" lay-verify="number"  placeholder="请输入学号" value="${config.configType}"
                                    autocomplete="off" class="layui-input ">
                         </div>
                     </div>
 
-
                     <div class="layui-form-item">
-                        <label class="layui-form-label">姓名</label>
+                        <label class="layui-form-label">子类型编码</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="name" lay-verify="required" placeholder="请输入姓名" value="${student.name}"
-                                   autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
-
-
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">密码</label>
-                        <div class="layui-input-inline">
-                            <input type="text" name="password" lay-verify="required" placeholder="请输入密码" value="${student.password}"
-                                   autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
-
-
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">性别</label>
-                        <div class="layui-input-inline">
-                            <input type="radio" name="sex" title="男" value="男" <#if student.sex == "男">checked</#if> />
-                            <input type="radio" name="sex" title="女" value="女" <#if student.sex == "女">checked</#if> />
-                        </div>
-                    </div>
-
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">电话</label>
-                        <div class="layui-input-inline">
-                            <input type="text" name="phone" lay-verify="required" placeholder="请输入电话" value="${student.phone}"
-                                   autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
-
-
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">请选择院系</label>
-                        <div class="layui-input-inline">
-                            <select name="dept" lay-filter="depts">
-                                <option value="">请选择院系</option>
-                            <#list depts as x>
-                                <option value="${x.id}"
-                                    <#if (student.major.dept.name == x.name)> selected="selected" </#if>
-                                >${x.name}</option>
-                            </#list>
-                            </select>
-                        </div>
-                        <div class="layui-input-inline">
-                            <select name="major" lay-filter="majors">
-                                <option value="">请选择专业</option>
-                            <#list majors as x>
-                                <option value="${x.id}"
-                                    <#if (student.major.name == x.name)> selected="selected" </#if>
-                                >${x.name}</option>
-                            </#list>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">班级</label>
-                        <div class="layui-input-inline">
-                            <input type="text" name="sclass" lay-verify="required" placeholder="请输入班级" value="${student.sclass}"
+                            <input type="text" name="name" lay-verify="required" placeholder="请输入姓名" value="${(config.code?c)!}"
                                    autocomplete="off" class="layui-input">
                         </div>
                     </div>
 
                     <div class="layui-form-item">
-                        <label class="layui-form-label">出生日期</label>
+                        <label class="layui-form-label">子类型名称</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="birth" value="${(student.birth)!}" class="layui-input" id="birth">
+                            <input type="text" name="password" lay-verify="required" placeholder="请输入密码" value="${config.zhName}"
+                                   autocomplete="off" class="layui-input">
                         </div>
                     </div>
+
 
                     <div class="layui-form-item">
                         <button class="layui-btn" lay-submit lay-filter="add">立即提交</button>

@@ -7,18 +7,15 @@ layui.define([ 'layer',  'table','common'], function (exports) {
         elem: '#student'
         ,height: 'full-200'
         ,method:'GET'
-        ,url: '/admin/student/list' //数据接口
+        ,url: '/admin/config/list' //数据接口
         ,page: true //开启分页
         ,cols: [[ //表头
             {type: 'checkbox', align:'center',unresize:true}
-            ,{field: 'num', align:'center', title: '学生编号',unresize:true}
-            ,{field: 'name', align:'center', title: '学生姓名',unresize:true}
-            ,{field: 'sex', align:'center', title: '性别',unresize:true}
-            ,{field: 'phone', align:'center', title: '电话',unresize:true}
-            ,{field: 'dept', align:'center', title: '所属院系',unresize:true,templet: '<div>{{d.major.dept.name}}</div>'}
-            ,{field: 'major', align:'center', title: '所属专业',unresize:true,templet: '<div>{{d.major.name}}</div>'}
-            ,{field: 'sclass', align:'center', title: '班级',unresize:true}
-            ,{field: 'chairman', align:'center', title: '辅导员',unresize:true,templet: '<div>{{d.major.dept.chairman}}</div>'}
+            ,{field: 'configType', align:'center', title: '配置项',unresize:true}
+            ,{field: 'code', align:'center', title: '子类型编码',unresize:true}
+            ,{field: 'zhName', align:'center', title: '子类型名称',unresize:true}
+            ,{field: 'addTime', align:'center', title: '创建时间',unresize:true}
+            ,{field: 'updateTime', align:'center', title: '更新时间',unresize:true}
             ,{fixed: 'right',  title:'操作',align:'center', toolbar: '#operator',unresize:true}
         ]]
     });
@@ -29,7 +26,7 @@ layui.define([ 'layer',  'table','common'], function (exports) {
         if(obj.event === 'del'){
             del(data.id);
         } else if(obj.event === 'edit'){
-            common.frame_show('编辑','/admin/student/form?id='+data.id);
+            common.frame_show('编辑','/admin/config/form?id='+data.id);
         }
     });
 
@@ -38,7 +35,7 @@ layui.define([ 'layer',  'table','common'], function (exports) {
         var index = layer.load(1);
         setTimeout(function () {
             layer.close(index);
-            common.frame_show('分类添加','/admin/student/form');
+            common.frame_show('分类添加','/admin/config/form');
             // layer.msg('打开添加窗口');
         }, 500);
     });
@@ -72,7 +69,7 @@ layui.define([ 'layer',  'table','common'], function (exports) {
             });
         },
         editData: function (id) {
-            common.frame_show('分类编辑','/admin/student/form?id='+id);
+            common.frame_show('分类编辑','/admin/config/form?id='+id);
         }
     };
     function del(id) {
@@ -80,12 +77,12 @@ layui.define([ 'layer',  'table','common'], function (exports) {
             $.ajax({
                 type: "DELETE",
                 dataType: "json",
-                url: "/admin/student/" + id + "/del",
+                url: "/admin/config/" + id + "/del",
                 success: function (ret) {
                     if (ret.isOk) {
                         layer.msg("操作成功", {time: 2000}, function () {
                             layer.close(index);
-                            window.location.href = "/admin/student/index";
+                            window.location.href = "/admin/config/index";
                         });
                     } else {
                         layer.msg(ret.msg, {time: 2000});
@@ -94,5 +91,5 @@ layui.define([ 'layer',  'table','common'], function (exports) {
             });
         });
     }
-    exports('admin/student/index', datalist);
+    exports('admin/config/index', datalist);
 });

@@ -25,14 +25,14 @@
         $.ajax({
             type: "POST",
             dataType: "json",
-            url: "/admin/student/save",
+            url: "/admin/config/save",
             data: data.field,
             success: function(ret){
                 if(ret.isOk){
                     layer.msg("操作成功", {time: 2000},function(){
                         var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
                         parent.layer.close(index);
-                        window.parent.location.href="/admin/student/index";
+                        window.parent.location.href="/admin/config/index";
                     });
                 }else{
                     layer.msg(ret.msg, {time: 2000});
@@ -44,9 +44,6 @@
 
 
     form.on('select(depts)', function(data){
-        // console.log(data.elem); //得到select原始DOM对象
-        // console.log(data.value); //得到被选中的值
-        // console.log(data.othis); //得到美化后的DOM对象
         var select = $("[name='major']");
         select.empty();
         $.ajax({
@@ -68,6 +65,6 @@
 
         form.render('select','form');
     });
-    exports('admin/student/form', {});
+    exports('admin/config/form', {});
 });
 

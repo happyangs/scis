@@ -38,9 +38,6 @@
 <body>
 
 <fieldset id="dataList" class="layui-elem-field layui-field-title sys-list-field">
-    <legend style="text-align:center;">学生列表</legend>
-
-
     <div class="layui-row">
         <div class="layui-form layui-col-md12 star-so">
             <input class="layui-input" placeholder="请输入姓名或者工号" name="keyword" id="keyword">
@@ -79,7 +76,7 @@
 <script type="text/javascript">
     layui.config({
         base: '${ctx}/js/'
-    }).use('admin/student/index');
+    }).use('admin/config/index');
 </script>
 </body>
 </html>

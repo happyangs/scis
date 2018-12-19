@@ -2,67 +2,65 @@ package com.jcohy.scis.controller;
 
 import com.jcohy.scis.common.JsonResult;
 import com.jcohy.scis.common.PageJson;
+import com.jcohy.scis.common.PageResponse;
 import com.jcohy.scis.model.*;
 import com.jcohy.scis.service.DeptService;
 import com.jcohy.scis.service.MajorService;
 import com.jcohy.scis.service.StudentService;
+import com.jcohy.scis.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 /**
- * Created by jiac on 2018/4/2.
- * Description  :
+ * @author dell
  */
 @Controller
 @RequestMapping("/admin/config")
 public class ConfigController extends BaseController{
 
     @Autowired
-    private StudentService studentService;
-
-    @Autowired
-    private DeptService deptService;
-
-    @Autowired
-    private MajorService majorService;
+    private TypeService typeService;
 
     @GetMapping("/list")
     @ResponseBody
-    public PageJson<Student> all(ModelMap map){
-        PageRequest pageRequest = getPageRequest();
-        Page<Student> students = studentService.findAll(pageRequest);
-        PageJson<Student> page = new PageJson<>();
-        page.setCode(0);
-        page.setMsg("成功");
-        page.setCount(students.getContent().size());
-        page.setData(students.getContent());
-        return page;
+    public PageResponse all(@RequestParam Integer page,
+                            @RequestParam Integer limit,
+                            @RequestParam(required = false) String configType,
+                            @RequestParam(required = false) Integer code){
+        BkConfigReq bkConfigReq = new BkConfigReq();
+        bkConfigReq.setPageNum(page);
+        bkConfigReq.setPageSize(limit);
+        bkConfigReq.setConfigType(configType);
+        bkConfigReq.setCode(code);
+        PageResponse response = typeService.queryConfig(bkConfigReq);
+        return response;
     }
 
     @GetMapping("/form")
     public String form(@RequestParam(required = false) Integer id, ModelMap map){
-        List<Dept> depts = deptService.findAll();
-        List<Major> majors = majorService.findAll();
-        map.put("depts",depts);
-        map.put("majors",majors);
         if(id != null){
-            Student student = studentService.findById(id);
-            map.put("student",student);
+            BkConfigReq bkConfigReq = new BkConfigReq();
+            bkConfigReq.setId(id);
+            List<BkConfig> list = typeService.queryConfigByCondition(bkConfigReq);
+            if (!CollectionUtils.isEmpty(list)){
+                map.put("config",list.get(0));
+            }
         }
-        return "admin/student/form";
+        return "admin/config/form";
     }
 
     @PostMapping("/save")
     @ResponseBody
-    public JsonResult save(Student student){
+    public JsonResult save(BkConfigReq bkConfigReq){
         try {
-            studentService.saveOrUpdate(student);
+            typeService.insertOrUpdate(bkConfigReq);
         } catch (Exception e) {
             e.printStackTrace();
             return JsonResult.fail(e.getMessage());
@@ -74,7 +72,7 @@ public class ConfigController extends BaseController{
     @ResponseBody
     public JsonResult del(@PathVariable("id") Integer id){
         try {
-            studentService.delete(id);
+            typeService.deleteById(id);
         } catch (Exception e) {
             e.printStackTrace();
             return JsonResult.fail("删除失败");

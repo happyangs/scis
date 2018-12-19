@@ -33,7 +33,7 @@ public class TypeController {
     public PageResponse all(ModelMap map){
         PageResponse page = new PageResponse<>();
         List<BkConfig> list = new ArrayList<>();
-        list = typeService.queryConfigType();
+//        list = typeService.queryConfigType();
         page.setData(list);
         page.setCode("0");
         return page;

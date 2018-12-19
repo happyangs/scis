@@ -15,24 +15,58 @@
     id, config_type, code, zh_name, add_time, update_time, is_delete
   </sql>
 
-
-  <select id="querySubType" resultType="com.jcohy.scis.model.BkConfig">
+  <select id="queryConfig"  parameterType="com.jcohy.scis.model.BkConfigReq"  resultMap="BaseResultMap">
     SELECT
-      CODE as code,
-      zh_name AS zhName
+    <include refid="Base_Column_List" />
     FROM
-      bk_config
-    WHERE is_delete = 0
-    <if test="productType != null">
-      AND config_type = #{productType,jdbcType=VARCHAR}
-    </if>
+      bk_config a
+    WHERE 1 = 1
+      AND a.`is_delete` = 0
+      <if test="id != null">
+        AND a.`id` = #{id,jdbcType=INTEGER}
+      </if>
+      <if test="configType != null">
+        AND a.`config_type` = #{configType,jdbcType=VARCHAR}
+      </if>
+      <if test="code != null">
+        AND a.`code` =  #{code,jdbcType=INTEGER}
+      </if>
   </select>
 
-  <select id="queryConfigType" resultType="com.jcohy.scis.model.BkConfig">
-    SELECT DISTINCT
-      config_type AS configType
-    FROM
-      bk_config
-    WHERE is_delete = 0
-  </select>
+  <insert id="insertOrUpdate" parameterType="com.jcohy.scis.model.BkConfigReq">
+    replace into bk_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="configType != null">
+        config_type,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="zhName != null">
+        zh_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="configType != null">
+        #{config_type,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=INTEGER},
+      </if>
+      <if test="zhName != null">
+        #{zh_name,jdbcType=VARCHAR0},
+      </if>
+    </trim>
+  </insert>
+
+  <delete id="deleteById" parameterType="java.lang.Integer">
+    delete from bk_config
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
 </mapper>
