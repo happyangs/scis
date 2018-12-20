@@ -2,6 +2,7 @@ package com.jcohy.scis.controller;
 
 import com.jcohy.scis.common.JsonResult;
 import com.jcohy.scis.common.PageResponse;
+import com.jcohy.scis.common.interfaces.IsSuccessEnum;
 import com.jcohy.scis.model.*;
 import com.jcohy.scis.service.OrderService;
 import com.jcohy.scis.service.ProductService;
@@ -98,7 +99,7 @@ public class ProductController {
         sb.append("点击下载："+bkProductVo.getLink()+" 提取码："+bkProductVo.getLinkCode());
         sendEmailVo.setContent(sb.toString());
         sendEmailVo.setSubject(bkProductVo.getProductName());
-        simpleMailSender.sendText(sendEmailVo);
+        Integer isSuccess = simpleMailSender.sendText(sendEmailVo);
 
         // 查询今日订单
         Integer orderId = null;
@@ -123,6 +124,7 @@ public class ProductController {
         order.setAddTime(new Date());
         order.setUpdateTime(new Date());
         order.setSalesMan("华键");
+        order.setOrderStatus(isSuccess);
         orderService.insert(order);
 
         return JsonResult.ok();

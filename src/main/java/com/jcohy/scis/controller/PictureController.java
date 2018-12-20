@@ -73,6 +73,7 @@ public class PictureController {
             pictureService.insertOrUpdate(bkProductPictureReq);
         } catch (Exception e) {
             logger.info(e.getMessage());
+            return JsonResult.fail(e.getMessage());
         }
         return JsonResult.ok();
     }

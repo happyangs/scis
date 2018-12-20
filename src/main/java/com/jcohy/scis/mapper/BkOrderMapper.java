@@ -15,4 +15,8 @@ public interface BkOrderMapper {
     void insertSelective(BkOrderReq req);
 
     List<BkOrderVo> queryTodayOrders();
+
+    void deleteById(Integer id);
+
+    void updateById(BkOrderReq req);
 }

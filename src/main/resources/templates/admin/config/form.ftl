@@ -43,7 +43,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">子类型编码</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="code" lay-verify="required" placeholder="子类型编码" value="${config.code}"
+                            <input type="text" name="code" lay-verify="required" placeholder="子类型编码" value="${(config.code?c)!}"
                                    autocomplete="off" class="layui-input">
                         </div>
                     </div>

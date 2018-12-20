@@ -4,10 +4,8 @@
 <head>
     <meta charset="utf-8" />
     <title>订单列表页面</title>
-    <!-- layui.css -->
     <link href="${ctx!}/js/plugins/layui/css/layui.css" rel="stylesheet" />
     <style>
-
         tr td:not(:nth-child(0)),
         tr th:not(:nth-child(0)) {
             text-align: center;
@@ -29,7 +27,6 @@
             width: 200px;
             display: inline-block;
         }
-
     </style>
 </head>
 <body>
@@ -59,8 +56,9 @@
         <div id="dataContent" class="">
             <table class="layui-hide" id="order" lay-filter="table"></table>
             <script type="text/html" id="operator">
-                <a class="layui-btn" lay-event="edit">编辑</a>
-                <a class="layui-btn layui-btn-danger " lay-event="del">删除</a>
+                <a class="layui-btn" lay-event="edit"><i class="layui-icon"></i></a>
+                <a class="layui-btn layui-btn-danger" lay-event="del"><i class="layui-icon"></i></a>
+                <a class="layui-btn layui-btn-normal" lay-event="send"><i class="layui-icon"></i></a>
             </script>
 
         </div>

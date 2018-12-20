@@ -37,6 +37,7 @@ public class BkOrderVo implements Serializable {
      * 作品类型 0-html 1-数据库 2-asp 3-python
      */
     private Integer productType;
+    private String productTypeName;
 
     /**
      * 学校
@@ -52,6 +53,7 @@ public class BkOrderVo implements Serializable {
      * 订单状态 1.交易成功 2.交易失败
      */
     private Integer orderStatus;
+    private String orderStatusName;
 
     /**
      * 发送时间

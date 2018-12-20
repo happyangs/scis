@@ -13,7 +13,13 @@ public interface OrderService {
 
     PageResponse<BkOrderVo> queryByCondition(BkOrderReq bkOrderReq);
 
+    List<BkOrderVo> queryByCondtion(BkOrderReq bkOrderReq);
+
     void insert(BkOrderReq req);
 
     List<BkOrderVo> queryTodayOrders();
+
+    void deleteById(Integer id);
+
+    void updateById(BkOrderReq req);
 }

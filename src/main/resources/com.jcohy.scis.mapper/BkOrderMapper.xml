@@ -73,7 +73,7 @@
   </select>
 
   <insert id="insertSelective" parameterType="com.jcohy.scis.model.BkOrderReq">
-    insert into bk_order
+    replace into bk_order
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
@@ -170,7 +170,7 @@
     </trim>
   </insert>
 
-    <update id="updateByPrimaryKeySelective" parameterType="com.jcohy.scis.model.BkOrderVo">
+    <update id="updateById" parameterType="com.jcohy.scis.model.BkOrderReq">
     update bk_order
     <set>
       <if test="orderId != null">
@@ -218,4 +218,9 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <delete id="deleteById" parameterType="java.lang.Integer">
+    delete from bk_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
 </mapper>

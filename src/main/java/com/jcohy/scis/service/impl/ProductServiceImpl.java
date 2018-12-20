@@ -39,6 +39,11 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
+    public List<BkProductVo> queryList(BkProductReq bkProductReq) {
+        return bkProductMapper.selectByCondition(bkProductReq);
+    }
+
+    @Override
     public JsonResult insert(BkProductReq bkProductReq) {
         if (bkProductReq != null){
             if (bkProductReq.getIsDelete() == null){

@@ -1,11 +1,15 @@
 package com.jcohy.scis.utils;
 
+import com.jcohy.scis.common.interfaces.IsSuccessEnum;
 import com.jcohy.scis.model.SendEmailVo;
 import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.FileSystemResource;
+import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -21,6 +25,8 @@ import java.io.File;
 @Service
 public class SimpleMailSender implements CommandLineRunner {
 
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Autowired
     private JavaMailSender mailSender;
 
@@ -30,7 +36,7 @@ public class SimpleMailSender implements CommandLineRunner {
     /**
      * 发送文本
      */
-    public void sendText(SendEmailVo sendEmailVo) {
+    public Integer sendText(SendEmailVo sendEmailVo) {
         String from = environment.getProperty("spring.mail.username");
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setFrom(from);
@@ -39,7 +45,13 @@ public class SimpleMailSender implements CommandLineRunner {
         msg.setSubject(sendEmailVo.getSubject());
         msg.setText(sendEmailVo.getContent());
 
-        this.mailSender.send(msg);
+        try {
+            this.mailSender.send(msg);
+        } catch (MailException e) {
+            logger.warn("邮箱：{}发送失败",sendEmailVo.getToEmail(),e);
+            return IsSuccessEnum.FAIL.getCode();
+        }
+        return IsSuccessEnum.SUCCESS.getCode();
     }
 
     @Override

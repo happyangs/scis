@@ -16,9 +16,6 @@
         .layui-laypage > * {
             float: left;
         }
-        .layui-field-title .layui-field-box{
-            padding: 10px 20px 10px 30px;
-        }
         .layui-table-cell{
             padding-top: 4px;
             height: 45px;
@@ -49,13 +46,13 @@
         </div>
     </div>
 
-    <div style="padding: 40px 0px 0px 80px;">
-        <div class="layui-inline">
-            <div class="layui-input-inline" style="width:auto">
-                <a id="addConfig" class="layui-btn layui-btn-normal">添加</a>
-            </div>
+
+    <div class="layui-inline">
+        <div class="layui-input-inline" style="width:auto">
+            <a id="addConfig" class="layui-btn layui-btn-normal">添加</a>
         </div>
     </div>
+
 
 
     <div class="layui-field-box">
@@ -63,8 +60,8 @@
 
             <table class="layui-hide" id="config" lay-filter="table"></table>
             <script type="text/html" id="operator">
-                <a class="layui-btn" lay-event="edit">编辑</a>
-                <a class="layui-btn layui-btn-danger " lay-event="del">删除</a>
+                <a class="layui-btn" lay-event="edit"><i class="layui-icon"></i></a>
+                <a class="layui-btn layui-btn-danger" lay-event="del"><i class="layui-icon"></i></a>
             </script>
 
         </div>

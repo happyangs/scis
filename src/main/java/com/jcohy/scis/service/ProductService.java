@@ -14,6 +14,8 @@ public interface ProductService {
 
     PageResponse queryByCondition(BkProductReq bkProductReq);
 
+    List<BkProductVo> queryList(BkProductReq bkProductReq);
+
     JsonResult insert(BkProductReq bkProductReq);
 
     JsonResult delete(Integer id);
