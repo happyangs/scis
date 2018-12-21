@@ -21,7 +21,7 @@ layui.define([ 'layer',  'table','common'], function (exports) {
             ,{field: 'link', align:'center', title: '链接',width:150,unresize:true}
             ,{field: 'linkCode', align:'center', title: '提取码',width:80,unresize:true}
             ,{field: 'addTime', align:'center', title: '添加时间',width:130,unresize:true}
-            ,{field: 'isDelete', align:'center', title: '开关',width:80,unresize:true}
+            ,{field: 'switch', align:'center', title: '开关',width:80,unresize:true}
             ,{fixed: 'right',  title:'操作',align:'center', width:250,toolbar: '#operator',unresize:true}
         ]]
         ,page: true //开启分页

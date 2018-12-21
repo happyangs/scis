@@ -12,6 +12,7 @@ import com.jcohy.scis.model.BkConfigReq;
 import com.jcohy.scis.model.BkOrderReq;
 import com.jcohy.scis.model.BkOrderVo;
 import com.jcohy.scis.service.OrderService;
+import com.jcohy.scis.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -31,7 +32,7 @@ public class OrderServiceImpl implements OrderService {
     private BkOrderMapper bkOrderMapper;
 
     @Autowired
-    private BkConfigMapper bkConfigMapper;
+    private TypeService typeService;
 
     @Override
     public PageResponse queryByCondition(BkOrderReq bkOrderReq) {
@@ -40,14 +41,13 @@ public class OrderServiceImpl implements OrderService {
         PageInfo<BkOrderVo> pageInfo = new PageInfo<>(list);
         Long total = pageInfo.getTotal();
         if (!CollectionUtils.isEmpty(list)){
-            BkConfigReq req = new BkConfigReq();
-            req.setConfigType(ConfigTypeEnum.PRODUCT_TYPE.getCode());
-            List<BkConfig> bkConfigs = bkConfigMapper.queryConfig(req);
-            Map<Integer,String> productTypeMap = bkConfigs.stream().filter(bkConfig -> !StringUtils.isEmpty(bkConfig.getZhName())).collect(Collectors.toMap(BkConfig::getCode,BkConfig::getZhName));
+           Map<Integer,String> productTypeMap = typeService.getConfigMap(ConfigTypeEnum.PRODUCT_TYPE.getCode());
             list.forEach(bkOrderVo -> {
                 bkOrderVo.setOrderStatusName(IsSuccessEnum.code2desc(bkOrderVo.getOrderStatus()));
-                bkOrderVo.setProductTypeName(productTypeMap.get(bkOrderVo.getProductType()));
                 bkOrderVo.setAddTime(bkOrderVo.getAddTime().substring(0,bkOrderVo.getAddTime().length()-2));
+                if (!CollectionUtils.isEmpty(productTypeMap)){
+                    bkOrderVo.setProductTypeName(productTypeMap.get(bkOrderVo.getProductType()));
+                }
             });
         }
         return PageResponse.buildSuccessResponseWithResult(list,total.intValue());
