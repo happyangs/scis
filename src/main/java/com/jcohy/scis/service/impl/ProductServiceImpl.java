@@ -4,8 +4,13 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.jcohy.scis.common.JsonResult;
 import com.jcohy.scis.common.PageResponse;
+import com.jcohy.scis.common.interfaces.ConfigTypeEnum;
 import com.jcohy.scis.common.interfaces.IsDeleteEnum;
+import com.jcohy.scis.common.interfaces.IsSwitchEnum;
+import com.jcohy.scis.mapper.BkConfigMapper;
 import com.jcohy.scis.mapper.BkProductMapper;
+import com.jcohy.scis.model.BkConfig;
+import com.jcohy.scis.model.BkConfigReq;
 import com.jcohy.scis.model.BkProductReq;
 import com.jcohy.scis.model.BkProductVo;
 import com.jcohy.scis.service.ProductService;
@@ -14,9 +19,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Created by Bryant on 2018.12.3
@@ -29,12 +37,26 @@ public class ProductServiceImpl implements ProductService{
     @Autowired
     private BkProductMapper bkProductMapper;
 
+    @Autowired
+    private BkConfigMapper bkConfigMapper;
+
     @Override
     public PageResponse queryByCondition(BkProductReq bkProductReq) {
         List<BkProductVo> list = bkProductMapper.selectByCondition(bkProductReq);
         PageHelper.startPage(bkProductReq.getPageNum() , bkProductReq.getPageSize());
         PageInfo<BkProductVo> pageInfo = new PageInfo<>(list);
         Long total = pageInfo.getTotal();
+        if (!CollectionUtils.isEmpty(list)){
+            BkConfigReq req = new BkConfigReq();
+            req.setConfigType(ConfigTypeEnum.PRODUCT_TYPE.getCode());
+            List<BkConfig> bkConfigs = bkConfigMapper.queryConfig(req);
+            Map<Integer,String> productTypeMap = bkConfigs.stream().filter(bkConfig -> !StringUtils.isEmpty(bkConfig.getZhName())).collect(Collectors.toMap(BkConfig::getCode,BkConfig::getZhName));
+            list.forEach(bkProductVo -> {
+                bkProductVo.setIsSwitch(IsSwitchEnum.code2desc(bkProductVo.getIsDelete()));
+                bkProductVo.setProductTypeName(productTypeMap.get(bkProductVo.getProductType()));
+            });
+        }
+
         return PageResponse.buildSuccessResponseWithResult(list,total.intValue());
     }
 

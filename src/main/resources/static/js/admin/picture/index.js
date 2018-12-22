@@ -15,7 +15,7 @@ layui.define(['laypage', 'layer',  'table','common','util','form'], function (ex
         ,cols: [[ //表头
             {type: 'checkbox', align:'center',unresize:true}
             ,{field: 'productId', align:'center', title: '产品ID', sort: true,unresize:true}
-            ,{field: 'pictureType', align:'center', title: '图片类型',sort: true,unresize:true}
+            ,{field: 'pictureTypeName', align:'center', title: '图片类型',sort: true,unresize:true}
             ,{field: 'pictureSize', align:'center', title: '图片尺寸',unresize:true}
             ,{field: 'picturePath', align:'center', title: '图片链接',sort: true,unresize:true}
             ,{field: 'remark', align:'center', title: '备注',unresize:true}

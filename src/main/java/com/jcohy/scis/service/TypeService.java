@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.Map;
 
 public interface TypeService {
 
@@ -18,4 +19,8 @@ public interface TypeService {
     void insertOrUpdate(BkConfigReq bkConfigReq);
 
     void deleteById(Integer id);
+
+    Map<Integer,String> getConfigMap(String configType);
+
+    List<BkConfig> getBkConfig(String configType);
 }

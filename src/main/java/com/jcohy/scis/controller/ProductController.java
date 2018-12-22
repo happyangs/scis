@@ -2,10 +2,12 @@ package com.jcohy.scis.controller;
 
 import com.jcohy.scis.common.JsonResult;
 import com.jcohy.scis.common.PageResponse;
+import com.jcohy.scis.common.interfaces.ConfigTypeEnum;
 import com.jcohy.scis.common.interfaces.IsSuccessEnum;
 import com.jcohy.scis.model.*;
 import com.jcohy.scis.service.OrderService;
 import com.jcohy.scis.service.ProductService;
+import com.jcohy.scis.service.TypeService;
 import com.jcohy.scis.utils.DateUtil;
 import com.jcohy.scis.utils.SimpleMailSender;
 import org.slf4j.Logger;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Bryant on 2018.12.3
@@ -37,6 +40,9 @@ public class ProductController {
     @Autowired
     private OrderService orderService;
 
+    @Autowired
+    private TypeService typeService;
+
     @GetMapping("/list")
     @ResponseBody
     public PageResponse<BkProductVo> list(@RequestParam Integer page,
@@ -52,10 +58,12 @@ public class ProductController {
 
     @GetMapping("/form")
     public String form(@RequestParam(required = false) Integer id, ModelMap map){
+        List<BkConfig> productType = typeService.getBkConfig(ConfigTypeEnum.PRODUCT_TYPE.getCode());
         if (id != null){
             BkProductVo product = productService.queryById(id);
             map.put("product",product);
         }
+        map.put("productType",productType);
         return "admin/product/form";
     }
 

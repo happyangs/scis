@@ -44,7 +44,7 @@
                         <a href="javascript:;"><i class="fa fa-home"></i>首页</a>
                     </li>
 
-                    <li class="layui-nav-item">
+                    <#--<li class="layui-nav-item">
                         <a href="javascript:;"><i class="fa fa-user"></i>用户管理</a>
                         <dl class="layui-nav-child">
                             <dd><a href="javascript:;" data-url="${ctx!}/admin/student/index" data-id="1">学生信息管理</a></dd>
@@ -98,7 +98,7 @@
                         <dl class="layui-nav-child">
                             <dd><a href="javascript:;" data-url="${ctx!}/admin/circular/index" data-id="13">发布通告</a></dd>
                         </dl>
-                    </li>
+                    </li>-->
 
                     <li class="layui-nav-item">
                         <a href="javascript:;"><i class="fa fa-file-text"></i>订单管理</a>

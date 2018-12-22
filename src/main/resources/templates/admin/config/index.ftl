@@ -37,7 +37,14 @@
 <fieldset id="dataList" class="layui-elem-field layui-field-title sys-list-field">
     <div class="layui-row">
         <div class="layui-form layui-col-md12 star-so">
-            <input class="layui-input" placeholder="配置项" name="configType" id="configType">
+            <div class="layui-input-inline">
+                <select name="configType" id="configType" lay-filter="depts">
+                    <option value="">请选择配置项</option>
+                <#list configType as x>
+                    <option value="${x.configType}">${x.configTypeDesc}</option>
+                </#list>
+                </select>
+            </div>
             <input class="layui-input" placeholder="子类型编码" name="code" id="code">
             <button class="layui-btn" id="search" "><i class="layui-icon">&#xe615;</i></button>
             <button class="layui-btn" style="position: relative;float: right;right: 100px;" onclick="javascript:location.replace(location.href)">

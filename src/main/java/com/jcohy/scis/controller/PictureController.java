@@ -4,8 +4,6 @@ import com.jcohy.scis.common.JsonResult;
 import com.jcohy.scis.common.PageResponse;
 import com.jcohy.scis.model.BkProductPictureReq;
 import com.jcohy.scis.model.BkProductPictureVo;
-import com.jcohy.scis.service.DeptService;
-import com.jcohy.scis.service.MajorService;
 import com.jcohy.scis.service.PictureService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,11 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * Created by jiac on 2018/5/25.
- * ClassName  : com.jcohy.scis.controller
- * Description  :
- */
 @Controller
 @RequestMapping("/admin/picture")
 public class PictureController {
@@ -27,12 +20,6 @@ public class PictureController {
 
     @Autowired
     private PictureService pictureService;
-
-    @Autowired
-    private MajorService majorService;
-
-    @Autowired
-    private DeptService deptService;
 
     @GetMapping("/list")
     @ResponseBody
