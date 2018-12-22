@@ -34,16 +34,28 @@
     <div class="layui-form-item">
         <label class="layui-form-label">图片类型</label>
         <div class="layui-input-inline">
-            <input type="text" name="pictureType" lay-verify="required" placeholder="请输入图片类型" value="${picture.pictureType}"
-                   autocomplete="off" class="layui-input">
+            <select name="dept" lay-filter="depts">
+                <option value="">请选择</option>
+            <#list pictureType as x>
+                <option value="${x.code}"
+                    <#if (picture.pictureType == x.code)> selected="selected" </#if>
+                >${x.zhName}</option>
+            </#list>
+            </select>
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">图片尺寸</label>
         <div class="layui-input-inline">
-            <input type="text" name="pictureSize" lay-verify="required" placeholder="请输入图片类型" value="${picture.pictureSize}"
-                   autocomplete="off" class="layui-input">
+            <select name="dept" lay-filter="depts">
+                <option value="">请选择</option>
+            <#list pictureSize as x>
+                <option value="${x.code}"
+                    <#if (picture.pictureSize == x.code)> selected="selected" </#if>
+                >${x.zhName}</option>
+            </#list>
+            </select>
         </div>
     </div>
 

@@ -2,15 +2,20 @@ package com.jcohy.scis.controller;
 
 import com.jcohy.scis.common.JsonResult;
 import com.jcohy.scis.common.PageResponse;
+import com.jcohy.scis.common.interfaces.ConfigTypeEnum;
+import com.jcohy.scis.model.BkConfig;
 import com.jcohy.scis.model.BkProductPictureReq;
 import com.jcohy.scis.model.BkProductPictureVo;
 import com.jcohy.scis.service.PictureService;
+import com.jcohy.scis.service.TypeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin/picture")
@@ -20,6 +25,10 @@ public class PictureController {
 
     @Autowired
     private PictureService pictureService;
+
+    @Autowired
+    private TypeService typeService;
+
 
     @GetMapping("/list")
     @ResponseBody
@@ -49,7 +58,12 @@ public class PictureController {
         }else{
             bkProductPictureVo = pictureService.queryById(id);
         }
+        List<BkConfig> pictureType = typeService.getBkConfig(ConfigTypeEnum.PICTURE_TYPE.getCode());
+        List<BkConfig> pictureSize = typeService.getBkConfig(ConfigTypeEnum.PRODUCT_SIZE.getCode());
+        map.put("pictureType",pictureType);
+        map.put("pictureSize",pictureSize);
         map.put("picture",bkProductPictureVo);
+
         return "admin/picture/form";
     }
 

@@ -10,6 +10,7 @@ import com.jcohy.scis.mapper.BkPictureMapper;
 import com.jcohy.scis.mapper.BkProductMapper;
 import com.jcohy.scis.model.*;
 import com.jcohy.scis.service.PictureService;
+import com.jcohy.scis.service.TypeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class PictureServiceImpl implements PictureService {
     private BkPictureMapper bkPictureMapper;
 
     @Autowired
-    private BkConfigMapper bkConfigMapper;
+    private TypeService typeService;
 
     @Override
     public PageResponse queryByCondition(BkProductPictureReq bkProductPictureReq) {
@@ -44,13 +45,15 @@ public class PictureServiceImpl implements PictureService {
         PageInfo<BkProductPictureVo> pageInfo = new PageInfo<>(list);
         Long total = pageInfo.getTotal();
         if (!CollectionUtils.isEmpty(list)){
-            BkConfigReq req = new BkConfigReq();
-            req.setConfigType(ConfigTypeEnum.PICTURE_TYPE.getCode());
-            List<BkConfig> bkConfigs = bkConfigMapper.queryConfig(req);
+            List<BkConfig> bkConfigs = typeService.getBkConfig(ConfigTypeEnum.PICTURE_TYPE.getCode());
             Map<Integer,String> pictureTypeMap = bkConfigs.stream().filter(bkConfig -> !StringUtils.isEmpty(bkConfig.getZhName())).collect(Collectors.toMap(BkConfig::getCode,BkConfig::getZhName));
+
+            List<BkConfig> pictureSize = typeService.getBkConfig(ConfigTypeEnum.PRODUCT_SIZE.getCode());
+            Map<Integer,String> pictureSizeMap = pictureSize.stream().filter(bkConfig -> !StringUtils.isEmpty(bkConfig.getZhName())).collect(Collectors.toMap(BkConfig::getCode,BkConfig::getZhName));
             list.forEach(bkProductPictureVo -> {
                 if (!CollectionUtils.isEmpty(pictureTypeMap)){
                     bkProductPictureVo.setPictureTypeName(pictureTypeMap.get(bkProductPictureVo.getPictureType()));
+                    bkProductPictureVo.setPictureSizeDesc(pictureSizeMap.get(bkProductPictureVo.getPictureType()));
                 }
             });
         }

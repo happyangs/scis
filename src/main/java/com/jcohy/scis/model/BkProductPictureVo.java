@@ -27,6 +27,7 @@ public class BkProductPictureVo implements Serializable {
      * 图片尺寸
      */
     private String pictureSize;
+    private String pictureSizeDesc;
 
     /**
      * 图片链接
