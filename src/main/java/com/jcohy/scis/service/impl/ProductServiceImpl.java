@@ -14,7 +14,6 @@ import com.jcohy.scis.model.BkConfigReq;
 import com.jcohy.scis.model.BkProductReq;
 import com.jcohy.scis.model.BkProductVo;
 import com.jcohy.scis.service.ProductService;
-import com.jcohy.scis.service.TypeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +38,7 @@ public class ProductServiceImpl implements ProductService{
     private BkProductMapper bkProductMapper;
 
     @Autowired
-    private TypeService typeService;
+    private BkConfigMapper bkConfigMapper;
 
     @Override
     public PageResponse queryByCondition(BkProductReq bkProductReq) {
@@ -47,15 +46,17 @@ public class ProductServiceImpl implements ProductService{
         PageHelper.startPage(bkProductReq.getPageNum() , bkProductReq.getPageSize());
         PageInfo<BkProductVo> pageInfo = new PageInfo<>(list);
         Long total = pageInfo.getTotal();
-        if (CollectionUtils.isEmpty(list)){
-            Map<Integer,String> productTypeMap = typeService.getConfigMap(ConfigTypeEnum.PRODUCT_TYPE.getCode());
+        if (!CollectionUtils.isEmpty(list)){
+            BkConfigReq req = new BkConfigReq();
+            req.setConfigType(ConfigTypeEnum.PRODUCT_TYPE.getCode());
+            List<BkConfig> bkConfigs = bkConfigMapper.queryConfig(req);
+            Map<Integer,String> productTypeMap = bkConfigs.stream().filter(bkConfig -> !StringUtils.isEmpty(bkConfig.getZhName())).collect(Collectors.toMap(BkConfig::getCode,BkConfig::getZhName));
             list.forEach(bkProductVo -> {
-                bkProductVo.setIsSwitch(IsSwitchEnum.code2desc(bkProductVo.getIsDelete().byteValue()));
-                if (!CollectionUtils.isEmpty(productTypeMap)){
-                    bkProductVo.setProductTypeName(productTypeMap.get(bkProductVo.getProductType()));
-                }
+                bkProductVo.setIsSwitch(IsSwitchEnum.code2desc(bkProductVo.getIsDelete()));
+                bkProductVo.setProductTypeName(productTypeMap.get(bkProductVo.getProductType()));
             });
         }
+
         return PageResponse.buildSuccessResponseWithResult(list,total.intValue());
     }
 

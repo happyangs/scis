@@ -73,6 +73,10 @@ public class BkProductVo implements Serializable {
      * 删除标记
      */
     private Integer isDelete;
+    /**
+     * 开关
+     */
+    private String isSwitch;
 
     private String isSwitch;
 

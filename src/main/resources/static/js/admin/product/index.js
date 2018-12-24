@@ -11,7 +11,7 @@ layui.define([ 'layer',  'table','common'], function (exports) {
         ,cols: [[ //表头
              {field: 'id',type: 'checkbox', align:'center',unresize:true}
             ,{field: 'productId', align:'center', title: '产品ID',width:90,unresize:true}
-            ,{field: 'productType', align:'center', title: '类型',width:80,unresize:true}
+            ,{field: 'productTypeName', align:'center', title: '类型',width:100,unresize:true}
             ,{field: 'productName', align:'center', title: '名称',width:150,unresize:true}
             ,{field: 'price', align:'center', title: '价格',width:80,unresize:true,sort: true}
             ,{field: 'htmlNum', align:'center', title: '张数',width:60,unresize:true}
@@ -21,7 +21,7 @@ layui.define([ 'layer',  'table','common'], function (exports) {
             ,{field: 'link', align:'center', title: '链接',width:150,unresize:true}
             ,{field: 'linkCode', align:'center', title: '提取码',width:80,unresize:true}
             ,{field: 'addTime', align:'center', title: '添加时间',width:130,unresize:true}
-            ,{field: 'switch', align:'center', title: '开关',width:80,unresize:true}
+            ,{field: 'isSwitch', align:'center', title: '开关',width:80,unresize:true}
             ,{fixed: 'right',  title:'操作',align:'center', width:250,toolbar: '#operator',unresize:true}
         ]]
         ,page: true //开启分页

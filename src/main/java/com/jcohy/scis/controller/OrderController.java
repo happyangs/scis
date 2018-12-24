@@ -10,6 +10,7 @@ import com.jcohy.scis.utils.DateUtil;
 import com.jcohy.scis.utils.SimpleMailSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Byant on 2018-11-28.
@@ -134,13 +136,13 @@ public class OrderController {
 
         // 更新订单
         try {
-            BkOrderReq order = new BkOrderReq();
-            order.setId(id);
-            order.setSendTime(new Date());
-            order.setUpdateTime(new Date());
-            order.setSalesMan("华键");
-            order.setOrderStatus(isSuccess);
-            orderService.insert(order);
+            BkOrderReq bkOrderReq = new BkOrderReq();
+            BeanUtils.copyProperties(orderVo, bkOrderReq);
+            bkOrderReq.setSendTime(new Date());
+            bkOrderReq.setAddTime(DateUtil.parseDate2(orderVo.getAddTime()));
+            bkOrderReq.setUpdateTime(new Date());
+            bkOrderReq.setOrderStatus(isSuccess);
+            orderService.insert(bkOrderReq);
         } catch (Exception e) {
             logger.warn("更新订单异常",e);
         }

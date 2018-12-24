@@ -21,11 +21,13 @@ public class BkProductPictureVo implements Serializable {
      * 图片类型 0-其他 1-首页 2-尾页 3-展示页
      */
     private Integer pictureType;
+    private String pictureTypeName;
 
     /**
      * 图片尺寸
      */
     private String pictureSize;
+    private String pictureSizeDesc;
 
     /**
      * 图片链接

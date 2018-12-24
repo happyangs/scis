@@ -30,6 +30,14 @@ public class TypeServiceImpl implements TypeService {
         PageHelper.startPage(bkConfigReq.getPageNum() , bkConfigReq.getPageSize());
         PageInfo<BkConfig> pageInfo = new PageInfo<>(list);
         Long total = pageInfo.getTotal();
+        if (!CollectionUtils.isEmpty(list)){
+            list.forEach(bkConfig -> {
+                bkConfig.setConfigType(ConfigTypeEnum.code2desc(bkConfig.getConfigType()));
+                bkConfig.setAddTime(bkConfig.getAddTime().substring(0,bkConfig.getAddTime().length()-2));
+                bkConfig.setUpdateTime(bkConfig.getUpdateTime().substring(0,bkConfig.getUpdateTime().length()-2));
+                }
+            );
+        }
         return PageResponse.buildSuccessResponseWithResult(list,total.intValue());
     }
 
@@ -53,10 +61,15 @@ public class TypeServiceImpl implements TypeService {
         BkConfigReq req = new BkConfigReq();
         req.setConfigType(configType);
         List<BkConfig> bkConfigs = bkConfigMapper.queryConfig(req);
-        if (CollectionUtils.isEmpty(bkConfigs)){
-            return null;
-        }
-        Map<Integer,String> productTypeMap = bkConfigs.stream().filter(bkConfig -> !StringUtils.isEmpty(bkConfig.getZhName())).collect(Collectors.toMap(BkConfig::getCode,BkConfig::getZhName));
-        return productTypeMap;
+        Map<Integer,String> map = bkConfigs.stream().filter(bkConfig -> !StringUtils.isEmpty(bkConfig.getZhName())).collect(Collectors.toMap(BkConfig::getCode,BkConfig::getZhName));
+        return map;
+    }
+
+    @Override
+    public List<BkConfig> getBkConfig(String configType){
+        BkConfigReq req = new BkConfigReq();
+        req.setConfigType(configType);
+        List<BkConfig> bkConfigs = bkConfigMapper.queryConfig(req);
+        return bkConfigs;
     }
 }

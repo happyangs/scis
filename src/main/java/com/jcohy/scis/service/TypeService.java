@@ -21,4 +21,6 @@ public interface TypeService {
     void deleteById(Integer id);
 
     Map<Integer,String> getConfigMap(String configType);
+
+    List<BkConfig> getBkConfig(String configType);
 }

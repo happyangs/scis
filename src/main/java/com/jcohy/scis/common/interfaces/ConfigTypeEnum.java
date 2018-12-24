@@ -10,7 +10,7 @@ import lombok.Getter;
 public enum ConfigTypeEnum {
     PRODUCT_TYPE("ProductType","作品类型"),
     PICTURE_TYPE("PictureType","图片类型"),
-    PRODUCT_SIZE("ProductSize","图片尺寸");
+    PRODUCT_SIZE("PictureSize","图片尺寸");
 
     @Getter
     private String code;

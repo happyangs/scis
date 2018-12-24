@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * Created by Bryant on 2018.12.21
+ * Created by Byant on 2018-12-22.
  */
 @AllArgsConstructor
 public enum IsSwitchEnum {
@@ -17,7 +17,7 @@ public enum IsSwitchEnum {
     @Getter
     private String description;
 
-    public static String code2desc(Byte code) {
+    public static String code2desc(Integer code) {
         for (IsSwitchEnum type : IsSwitchEnum.values()) {
             if (code.equals(type.code)) {
                 return type.getDescription();
@@ -25,5 +25,4 @@ public enum IsSwitchEnum {
         }
         return "";
     }
-
 }

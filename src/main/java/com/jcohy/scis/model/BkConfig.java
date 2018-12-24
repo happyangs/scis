@@ -18,6 +18,8 @@ public class BkConfig implements Serializable {
      */
     private String configType;
 
+    private String configTypeDesc;
+
     /**
      * 配置code
      */

@@ -3,6 +3,7 @@ package com.jcohy.scis.controller;
 import com.jcohy.scis.common.JsonResult;
 import com.jcohy.scis.common.PageJson;
 import com.jcohy.scis.common.PageResponse;
+import com.jcohy.scis.common.interfaces.ConfigTypeEnum;
 import com.jcohy.scis.model.*;
 import com.jcohy.scis.service.DeptService;
 import com.jcohy.scis.service.MajorService;
@@ -14,9 +15,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author dell
@@ -27,6 +30,28 @@ public class ConfigController extends BaseController{
 
     @Autowired
     private TypeService typeService;
+
+    @GetMapping("/index")
+    public String index(ModelMap map){
+        BkConfigReq bkConfigReq = new BkConfigReq();
+        List<BkConfig> list = typeService.queryConfigByCondition(bkConfigReq);
+//        根据两个属性去重
+//        List<BkConfig> configType = list.stream().collect(
+//                Collectors.collectingAndThen(
+//                        Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(o -> o.getCode() + ";" + o.getZhName()))), ArrayList::new)
+//        );
+
+        List<BkConfig> configType = list.stream().collect(
+                Collectors.collectingAndThen(
+                        Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(o -> o.getConfigType()))), ArrayList::new)
+        );
+        configType.forEach(bkConfig -> bkConfig.setConfigTypeDesc(ConfigTypeEnum.code2desc(bkConfig.getConfigType())));
+
+//        Map<String,String> configTypeMap = list.stream().distinct().collect(Collectors.toMap(BkConfig::getConfigType,a->ConfigTypeEnum.code2desc(a.getConfigType())));
+
+        map.put("configType",configType);
+        return "admin/config/index";
+    }
 
     @GetMapping("/list")
     @ResponseBody

@@ -3,7 +3,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> - 产品信息</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <link href="${ctx!}/js/plugins/layui/css/layui.css" rel="stylesheet" />
@@ -20,16 +19,21 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <section class="panel panel-padding">
                 <form id="form1" class="layui-form" lay-filter="form">
-
                     <div class="layui-form-item">
                         <input type="hidden" name="id" value="${(product.id?c)!}" >
                     </div>
 
-                    <div class="layui-form-item" style="margin-top: 10px">
+                    <div class="layui-form-item">
                         <label class="layui-form-label">产品类型</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="productType" lay-verify="required|number"  placeholder="请输入产品类型" value="${(product.productType?c)!}"
-                                   autocomplete="off" class="layui-input ">
+                            <select name="dept" lay-filter="depts">
+                                <option value="">请选择</option>
+                            <#list productType as x>
+                                <option value="${x.code}"
+                                    <#if (product.productType == x.code)> selected="selected" </#if>
+                                >${x.zhName}</option>
+                            </#list>
+                            </select>
                         </div>
                     </div>
 

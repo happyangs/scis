@@ -16,14 +16,14 @@ layui.define([ 'layer',  'table','common'], function (exports) {
             ,{field: 'price', align:'center', title: '价格',width:90,unresize:true}
             ,{field: 'productTypeName', align:'center', title: '类型',width:120,unresize:true}
             ,{field: 'buyerSchool', align:'center', title: '学校',width:180,unresize:true}
-            ,{field: 'buyerEmail', align:'center',width:180, title: '邮箱',unresize:true}
+            ,{field: 'buyerEmail', align:'center',width:170, title: '邮箱',unresize:true}
             ,{field: 'orderStatusName', align:'center', title: '状态',width:70,unresize:true}
             // ,{field: 'sendTime', align:'center', title: '发送时间',width:175,unresize:true}
             // ,{field: 'remarks', align:'center', title: '备注',width:70,unresize:true}
             ,{field: 'salesMan', align:'center', title: '销售员',width:90,unresize:true}
-            ,{field: 'addTime', align:'center', title: '创建时间',width:175,unresize:true,sort: true}
+            ,{field: 'addTime', align:'center', title: '创建时间',width:160,unresize:true,sort: true}
             // ,{field: 'updateTime', align:'center', title: '更新时间',unresize:true}
-            ,{fixed: 'right',  title:'操作',width:220,align:'center', toolbar: '#operator',unresize:true}
+            ,{fixed: 'right',  title:'操作',width:260,align:'center', toolbar: '#operator',unresize:true}
         ]]
         ,page: true //开启分页
     });
@@ -60,7 +60,6 @@ layui.define([ 'layer',  'table','common'], function (exports) {
             ,where: {
                 'buyerSchool': school,
                 'productId' : productId
-
             }
         });
     });

@@ -2,11 +2,12 @@ package com.jcohy.scis.controller;
 
 import com.jcohy.scis.common.JsonResult;
 import com.jcohy.scis.common.PageResponse;
+import com.jcohy.scis.common.interfaces.ConfigTypeEnum;
+import com.jcohy.scis.model.BkConfig;
 import com.jcohy.scis.model.BkProductPictureReq;
 import com.jcohy.scis.model.BkProductPictureVo;
-import com.jcohy.scis.service.DeptService;
-import com.jcohy.scis.service.MajorService;
 import com.jcohy.scis.service.PictureService;
+import com.jcohy.scis.service.TypeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +15,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * Created by jiac on 2018/5/25.
- * ClassName  : com.jcohy.scis.controller
- * Description  :
- */
+import java.util.List;
+
 @Controller
 @RequestMapping("/admin/picture")
 public class PictureController {
@@ -29,10 +27,8 @@ public class PictureController {
     private PictureService pictureService;
 
     @Autowired
-    private MajorService majorService;
+    private TypeService typeService;
 
-    @Autowired
-    private DeptService deptService;
 
     @GetMapping("/list")
     @ResponseBody
@@ -62,7 +58,12 @@ public class PictureController {
         }else{
             bkProductPictureVo = pictureService.queryById(id);
         }
+        List<BkConfig> pictureType = typeService.getBkConfig(ConfigTypeEnum.PICTURE_TYPE.getCode());
+        List<BkConfig> pictureSize = typeService.getBkConfig(ConfigTypeEnum.PRODUCT_SIZE.getCode());
+        map.put("pictureType",pictureType);
+        map.put("pictureSize",pictureSize);
         map.put("picture",bkProductPictureVo);
+
         return "admin/picture/form";
     }
 
