@@ -78,6 +78,14 @@ public class ConfigController extends BaseController{
                 map.put("config",list.get(0));
             }
         }
+        BkConfigReq bkConfigReq = new BkConfigReq();
+        List<BkConfig> list = typeService.queryConfigByCondition(bkConfigReq);
+        List<BkConfig> configType = list.stream().collect(
+                Collectors.collectingAndThen(
+                        Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(o -> o.getConfigType()))), ArrayList::new)
+        );
+        configType.forEach(bkConfig -> bkConfig.setConfigTypeDesc(ConfigTypeEnum.code2desc(bkConfig.getConfigType())));
+        map.put("configType",configType);
         return "admin/config/form";
     }
 
