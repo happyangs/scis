@@ -16,7 +16,7 @@ layui.define(['laypage', 'layer',  'table','common','util','form'], function (ex
             {type: 'checkbox', align:'center',unresize:true}
             ,{field: 'productId', align:'center', title: '产品ID', sort: true,unresize:true}
             ,{field: 'pictureTypeName', align:'center', title: '图片类型',sort: true,unresize:true}
-            ,{field: 'pictureSize', align:'center', title: '图片尺寸',unresize:true}
+            ,{field: 'pictureSizeDesc', align:'center', title: '图片尺寸',unresize:true}
             ,{field: 'picturePath', align:'center', title: '图片链接',sort: true,unresize:true}
             ,{field: 'remark', align:'center', title: '备注',unresize:true}
             ,{field: 'addTime', title: '创建日期',unresize:true}
@@ -46,9 +46,8 @@ layui.define(['laypage', 'layer',  'table','common','util','form'], function (ex
         }
     });
 
-    var productId='';
     $('#search').click(function () {
-        productId = $("#productId").val();
+        var productId = $("#productId").val();
         table.reload('picture', {
             url: "/admin/picture/list"
             ,where: {
@@ -94,7 +93,7 @@ layui.define(['laypage', 'layer',  'table','common','util','form'], function (ex
                     if (ret.isOk) {
                         layer.msg("操作成功", {time: 2000}, function () {
                             layer.close(index);
-                            window.location.href = "/admin/picture/index";
+                            $('#search').click()
                         });
                     } else {
                         layer.msg(ret.msg, {time: 2000});
@@ -106,6 +105,4 @@ layui.define(['laypage', 'layer',  'table','common','util','form'], function (ex
 
     exports('picture/index', datalist);
 
-    $("#productId").text(1022);
-    $('#search').click()
 });

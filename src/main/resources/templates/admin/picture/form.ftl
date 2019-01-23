@@ -34,7 +34,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">图片类型</label>
         <div class="layui-input-inline">
-            <select name="dept" lay-filter="depts">
+            <select name="pictureType" lay-filter="depts">
                 <option value="">请选择</option>
             <#list pictureType as x>
                 <option value="${x.code}"
@@ -48,7 +48,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">图片尺寸</label>
         <div class="layui-input-inline">
-            <select name="dept" lay-filter="depts">
+            <select name="pictureSize" lay-filter="depts">
                 <option value="">请选择</option>
             <#list pictureSize as x>
                 <option value="${x.code}"

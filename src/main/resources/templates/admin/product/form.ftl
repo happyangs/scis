@@ -26,7 +26,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">产品类型</label>
                         <div class="layui-input-inline">
-                            <select name="dept" lay-filter="depts">
+                            <select name="productType">
                                 <option value="">请选择</option>
                             <#list productType as x>
                                 <option value="${x.code}"

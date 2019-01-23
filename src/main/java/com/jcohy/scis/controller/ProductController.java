@@ -106,7 +106,7 @@ public class ProductController {
         StringBuffer sb = new StringBuffer();
         sb.append("点击下载："+bkProductVo.getLink()+" 提取码："+bkProductVo.getLinkCode());
         sendEmailVo.setContent(sb.toString());
-        sendEmailVo.setSubject(bkProductVo.getProductName());
+        sendEmailVo.setSubject("[网页作业]"+bkProductVo.getProductName());
         Integer isSuccess = simpleMailSender.sendText(sendEmailVo);
 
         // 查询今日订单

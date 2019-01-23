@@ -53,7 +53,7 @@ public class PictureServiceImpl implements PictureService {
             list.forEach(bkProductPictureVo -> {
                 if (!CollectionUtils.isEmpty(pictureTypeMap)){
                     bkProductPictureVo.setPictureTypeName(pictureTypeMap.get(bkProductPictureVo.getPictureType()));
-                    bkProductPictureVo.setPictureSizeDesc(pictureSizeMap.get(bkProductPictureVo.getPictureType()));
+                    bkProductPictureVo.setPictureSizeDesc(pictureSizeMap.get(Integer.valueOf(bkProductPictureVo.getPictureSize())));
                 }
             });
         }
