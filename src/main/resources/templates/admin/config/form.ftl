@@ -32,11 +32,15 @@
                         <input type="hidden" name="id"  value="${(config.id)!}" >
                     </div>
 
-                    <div class="layui-form-item" style="margin-top: 10px">
+                    <div class="layui-form-item">
                         <label class="layui-form-label">配置项</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="configType" lay-verify="required"  placeholder="请输入配置项" value="${config.configType}"
-                                   autocomplete="off" class="layui-input ">
+                            <select name="configType" lay-filter="depts">
+                            <option value="">请选择配置项</option>
+                        <#list configType as x>
+                            <option value="${x.configType}"<#if (config.configType == x.configType)> selected="selected" </#if>>${x.configTypeDesc}</option>
+                        </#list>
+                        </select>
                         </div>
                     </div>
 
