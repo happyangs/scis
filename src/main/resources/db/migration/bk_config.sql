@@ -16,5 +16,14 @@ ROW_FORMAT=COMPACT
 COMMENT='系统配置表'
 ;
 
-INSERT INTO bk_config(config_type,CODE,zh_name) VALUES('productType','1001','html/css');
-INSERT INTO bk_config(config_type,CODE,zh_name) VALUES('productType','1002','数据库Web');
+INSERT INTO bk_config(config_type,CODE,zh_name) VALUES('ProductType','1','html/css');
+INSERT INTO bk_config(config_type,CODE,zh_name) VALUES('ProductType','2','数据库');
+
+INSERT INTO bk_config(config_type,CODE,zh_name) VALUES('PictureSize','1','210×210');
+INSERT INTO bk_config(config_type,CODE,zh_name) VALUES('PictureSize','2','1000×563');
+
+INSERT INTO bk_config(config_type,CODE,zh_name) VALUES('PictureType','1','首页');
+INSERT INTO bk_config(config_type,CODE,zh_name) VALUES('PictureType','2','内容');
+
+INSERT INTO bk_config(config_type,CODE,zh_name) VALUES('ProductTheme','1','节日');
+

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jcohy.scis.mapper.BkProductMapper">
-    <resultMap id="BaseResultMap" type="com.jcohy.scis.model.BkProductVo">
+    <resultMap id="BkProductVo" type="com.jcohy.scis.model.BkProductVo">
         <id column="id" jdbcType="INTEGER" property="id" />
         <result column="product_id" jdbcType="INTEGER" property="productId" />
         <result column="product_type" jdbcType="INTEGER" property="productType" />
@@ -24,11 +24,11 @@
         product_synopsis, remark, add_time, update_time, is_delete,link,link_code
     </sql>
 
-    <select id="selectByCondition" parameterType="com.jcohy.scis.model.BkProductReq" resultMap="BaseResultMap">
+    <select id="selectByCondition" parameterType="com.jcohy.scis.model.BkProductReq" resultMap="BkProductVo">
         select
           <include refid="Base_Column_List" />
           from bk_product
-          where 1 = 1
+          where is_delete = 0
         <if test="productId != null">
             AND product_id = #{productId,jdbcType=INTEGER}
         </if>
@@ -38,7 +38,7 @@
         ORDER BY update_time DESC
     </select>
 
-    <select id="getMaxProductId" parameterType="com.jcohy.scis.model.BkProductReq" resultMap="BaseResultMap">
+    <select id="getMaxProductId" parameterType="com.jcohy.scis.model.BkProductReq" resultMap="BkProductVo">
         SELECT product_id FROM bk_product ORDER BY product_id DESC LIMIT 1
     </select>
 

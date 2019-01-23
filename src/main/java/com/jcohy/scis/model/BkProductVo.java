@@ -78,8 +78,6 @@ public class BkProductVo implements Serializable {
      */
     private String isSwitch;
 
-    private String isSwitch;
-
     private  String link;
 
     private String linkCode;

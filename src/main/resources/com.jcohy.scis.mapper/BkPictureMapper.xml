@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jcohy.scis.mapper.BkPictureMapper">
-    <resultMap id="BaseResultMap" type="com.jcohy.scis.model.BkProductPictureVo">
+    <resultMap id="BkProductPictureVo" type="com.jcohy.scis.model.BkProductPictureVo">
         <id column="id" jdbcType="INTEGER" property="id" />
         <result column="product_id" jdbcType="INTEGER" property="productId" />
         <result column="picture_type" jdbcType="INTEGER" property="pictureType" />
@@ -18,11 +18,11 @@
        is_delete
     </sql>
 
-    <select id="selectByCondition" parameterType="com.jcohy.scis.model.BkProductPictureReq" resultMap="BaseResultMap">
+    <select id="selectByCondition" parameterType="com.jcohy.scis.model.BkProductPictureReq" resultMap="BkProductPictureVo">
         select
         <include refid="Base_Column_List" />
         from bk_product_picture
-        where 1 = 1
+        where is_delete = 0
         <if test="productId != null">
             AND product_id = #{productId,jdbcType=INTEGER}
         </if>
