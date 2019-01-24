@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS `bk_config` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `config_type` VARCHAR(20) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '配置项',
   `code` INT(4) NOT NULL DEFAULT 0 COMMENT '配置code',
-  `zh_name` VARCHAR(20) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '内容项',
+  `zh_name` VARCHAR(50) CHARACTER SET utf8 NOT NULL DEFAULT '' COMMENT '内容项',
   `add_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '添加时间',
   `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `is_delete` TINYINT(4) NOT NULL DEFAULT '0' COMMENT '删除标记',
@@ -26,4 +26,6 @@ INSERT INTO bk_config(config_type,CODE,zh_name) VALUES('PictureType','1','首页
 INSERT INTO bk_config(config_type,CODE,zh_name) VALUES('PictureType','2','内容');
 
 INSERT INTO bk_config(config_type,CODE,zh_name) VALUES('ProductTheme','1','节日');
+
+INSERT INTO bk_config(config_type,CODE,zh_name) VALUES('TaoBaoUrl','1','淘宝链接');
 
