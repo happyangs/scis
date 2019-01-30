@@ -27,5 +27,5 @@ INSERT INTO bk_config(config_type,CODE,zh_name) VALUES('PictureType','2','内容
 
 INSERT INTO bk_config(config_type,CODE,zh_name) VALUES('ProductTheme','1','节日');
 
-INSERT INTO bk_config(config_type,CODE,zh_name) VALUES('TaoBaoUrl','1','淘宝链接');
+INSERT INTO bk_config(config_type,CODE,zh_name) VALUES('TaoBaoUrl','1','http://www.taobao.com');
 
