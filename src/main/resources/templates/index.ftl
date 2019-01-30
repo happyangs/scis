@@ -48,7 +48,7 @@
     <nav class="blog-nav layui-header">
         <div class="blog-container">
             <!-- 用户登陆 -->
-			<a class="blog-logo" href="/" style="top: -20px;">双创信息</a>
+			<a class="blog-logo" href="/" style="top: -20px;">毕业设计</a>
 
             <div class="blog-user"></div>
 

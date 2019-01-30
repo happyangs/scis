@@ -10,10 +10,10 @@ CREATE TABLE IF NOT EXISTS `bk_config` (
   KEY `idx_config_type` (`config_type`) USING BTREE COMMENT '补录单号索引',
   KEY `idx_code` (`code`)USING BTREE COMMENT '更新时间索引'
 )
-ENGINE=INNODB
-DEFAULT CHARACTER SET=utf8mb4 COLLATE=utf8mb4_general_ci
-ROW_FORMAT=COMPACT
-COMMENT='系统配置表'
+  ENGINE=INNODB
+  DEFAULT CHARACTER SET=utf8mb4 COLLATE=utf8mb4_general_ci
+  ROW_FORMAT=COMPACT
+  COMMENT='系统配置表'
 ;
 
 INSERT INTO bk_config(config_type,CODE,zh_name) VALUES('ProductType','1','html/css');

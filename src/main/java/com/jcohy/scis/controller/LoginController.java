@@ -2,15 +2,8 @@ package com.jcohy.scis.controller;
 
 import com.jcohy.lang.StringUtils;
 import com.jcohy.scis.common.JsonResult;
-import com.jcohy.scis.exception.ServiceException;
 import com.jcohy.scis.model.Admin;
-import com.jcohy.scis.model.Expert;
-import com.jcohy.scis.model.Student;
-import com.jcohy.scis.model.Teacher;
 import com.jcohy.scis.service.AdminService;
-import com.jcohy.scis.service.ExpertService;
-import com.jcohy.scis.service.StudentService;
-import com.jcohy.scis.service.TeacherService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,16 +26,6 @@ public class LoginController {
     @Autowired
     private AdminService adminService;
 
-    @Autowired
-    private StudentService studentService;
-
-    @Autowired
-    private TeacherService teacherService;
-
-    @Autowired
-    private ExpertService expertService;
-
-
     /**
      * 登录处理
      * @param num
@@ -61,37 +44,7 @@ public class LoginController {
             HttpSession session = request.getSession();
             session.setAttribute("role",role);
             logger.error("name:{}  password:{}  type:{}",num,password,role);
-            if(StringUtils.trim(role).equals("student")){
-                Student login = studentService.login(num, password);
-                if(login == null){
-                    return JsonResult.fail("登录失败,用户名不存在");
-                }
-                if(!login.getPassword().equals(password)){
-                    return JsonResult.fail("登录失败,用户名账号密码不匹配");
-                }
-                session.setAttribute("user",login);
-                return JsonResult.ok().set("returnUrl", "/student/main");
-            }else if(StringUtils.trim(role).equals("teacher")){
-                Teacher login = teacherService.login(num, password);
-                if(login == null){
-                    return JsonResult.fail("登录失败,用户名不存在");
-                }
-                if(!login.getPassword().equals(password)){
-                    return JsonResult.fail("登录失败,用户名账号密码不匹配");
-                }
-                session.setAttribute("user",login);
-                return JsonResult.ok().set("returnUrl", "/teacher/main");
-            }else if(StringUtils.trim(role).equals("expert")){
-                Expert login = expertService.login(num, password);
-                if(login == null){
-                    return JsonResult.fail("登录失败,用户名不存在");
-                }
-                if(!login.getPassword().equals(password)){
-                    return JsonResult.fail("登录失败,用户名账号密码不匹配");
-                }
-                session.setAttribute("user",login);
-                return JsonResult.ok().set("returnUrl", "/expert/main");
-            }else if(StringUtils.trim(role).equals("admin")){
+            if(StringUtils.trim(role).equals("admin")){
                 Admin login = adminService.login(num, password);
                 if(login == null){
                     return JsonResult.fail("登录失败,用户名不存在");
@@ -117,12 +70,20 @@ public class LoginController {
      */
     @GetMapping("/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response){
-
         return "redirect:/";
     }
 
 
-
+    /**
+     * 更新密码
+     * @param role
+     * @param num
+     * @param oldPassword
+     * @param newPassword
+     * @param rePassword
+     * @param map
+     * @return
+     */
     @PostMapping("/admin/update/")
     @ResponseBody
     public JsonResult updatePassword(@SessionAttribute("role") String role,@RequestParam Long num,@RequestParam String oldPassword, @RequestParam String newPassword,
@@ -137,28 +98,7 @@ public class LoginController {
         if(!newPassword.equals(rePassword)){
             return JsonResult.fail("两次输入密码不一致");
         }
-        if(role.equals("student")){
-            Student dbUser = studentService.findByNum(num);
-            if(!dbUser.getPassword().equals(oldPassword)){
-                return JsonResult.fail("旧密码不正确");
-            }
-            dbUser.setPassword(newPassword);
-            studentService.updatePassword(dbUser);
-        }else if(role.equals("teacher")){
-            Teacher dbUser = teacherService.findByNum(num);
-            if(!dbUser.getPassword().equals(oldPassword)){
-                return JsonResult.fail("旧密码不正确");
-            }
-            dbUser.setPassword(newPassword);
-            teacherService.updatePassword(dbUser);
-        }else if(role.equals("expert")){
-            Expert dbUser = expertService.findByNum(num);
-            if(!dbUser.getPassword().equals(oldPassword)){
-                return JsonResult.fail("旧密码不正确");
-            }
-            dbUser.setPassword(newPassword);
-            expertService.updatePassword(dbUser);
-        }else if(role.equals("admin")){
+        if(role.equals("admin")){
             Admin dbUser = adminService.findByNum(num);
             if(!dbUser.getPassword().equals(oldPassword)){
                 return JsonResult.fail("旧密码不正确");

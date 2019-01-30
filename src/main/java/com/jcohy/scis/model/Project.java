@@ -35,13 +35,6 @@ public class Project implements Serializable{
     @Column(name = "t_reason")
     private String TReason;
 
-    @ManyToOne
-    @JoinColumn(name = "student_id")
-    private Student student;
-
-    @ManyToOne
-    @JoinColumn(name = "teacher_id")
-    private Teacher teacher;
     @OneToOne
     @JoinColumn(name = "book_id")
     private Book book;
@@ -182,22 +175,6 @@ public class Project implements Serializable{
 
     public void setTReason(String TReason) {
         this.TReason = TReason;
-    }
-
-    public Student getStudent() {
-        return student;
-    }
-
-    public void setStudent(Student student) {
-        this.student = student;
-    }
-
-    public Teacher getTeacher() {
-        return teacher;
-    }
-
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
     }
 
     public Book getBook() {

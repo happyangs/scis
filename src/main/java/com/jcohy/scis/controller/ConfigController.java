@@ -1,21 +1,14 @@
 package com.jcohy.scis.controller;
 
 import com.jcohy.scis.common.JsonResult;
-import com.jcohy.scis.common.PageJson;
 import com.jcohy.scis.common.PageResponse;
 import com.jcohy.scis.common.interfaces.ConfigTypeEnum;
 import com.jcohy.scis.model.*;
-import com.jcohy.scis.service.DeptService;
-import com.jcohy.scis.service.MajorService;
-import com.jcohy.scis.service.StudentService;
 import com.jcohy.scis.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;

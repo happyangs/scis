@@ -24,10 +24,10 @@
             <div class="carousel_div3"></div>
         </div>
         <div class="login layui-anim layui-anim-up">
-            <h1>双创项目信息管理系统</h1>
+            <h1>毕业设计信息管理系统</h1>
             <form class="layui-form" action="${ctx!}/login" method="post">
                 <div class="layui-form-item">
-                    <input type="text" name="num" lay-verify="number" placeholder="请输入学号或者帐号" autocomplete="off"  value="" class="layui-input">
+                    <input type="text" name="num" lay-verify="number" placeholder="请输入者帐号" autocomplete="off"  value="" class="layui-input">
                 </div>
                 <div class="layui-form-item">
                     <input type="password" name="password" lay-verify="required" placeholder="请输入密码" autocomplete="off" value="" class="layui-input">
@@ -35,24 +35,17 @@
 
                 <div class="layui-input-block" style="margin-left: 0">
                     <select name="role" lay-verify="">
-                        <option value="">请选择一个角色</option>
+                        <#--<option value="">请选择一个角色</option>
                         <option value="student">学生</option>
                         <option value="teacher">老师</option>
-                        <option value="expert">专家</option>
+                        <option value="expert">专家</option>-->
                         <option value="admin">管理员</option>
                     </select>
-                <#--<input type="radio" name="role" value="student" title="学生" checked>-->
-                    <#--<input type="radio" name="role" value="teacher" title="老师" >-->
-                    <#--<input type="radio" name="role" value="expert" title="专家" >-->
-                    <#--<input type="radio" name="role" value="admin" title="管理员" >-->
                 </div>
                 <button class="layui-btn login_btn" lay-submit="" lay-filter="login">登陆系统</button>
             </form>
-
         </div>
-
     </div>
-
 </body>
 
 </html>

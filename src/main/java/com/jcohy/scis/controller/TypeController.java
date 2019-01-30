@@ -1,12 +1,9 @@
 package com.jcohy.scis.controller;
 
 import com.jcohy.scis.common.JsonResult;
-import com.jcohy.scis.common.PageJson;
 import com.jcohy.scis.common.PageResponse;
 import com.jcohy.scis.model.BkConfig;
-import com.jcohy.scis.model.Project;
 import com.jcohy.scis.model.Type;
-import com.jcohy.scis.service.ProjectService;
 import com.jcohy.scis.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,15 +22,11 @@ public class TypeController {
     @Autowired
     private TypeService typeService;
 
-    @Autowired
-    private ProjectService projectService;
-
     @GetMapping("/list")
     @ResponseBody
     public PageResponse all(ModelMap map){
         PageResponse page = new PageResponse<>();
         List<BkConfig> list = new ArrayList<>();
-//        list = typeService.queryConfigType();
         page.setData(list);
         page.setCode("0");
         return page;

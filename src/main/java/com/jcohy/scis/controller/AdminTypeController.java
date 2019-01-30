@@ -2,16 +2,12 @@ package com.jcohy.scis.controller;
 
 import com.jcohy.scis.common.JsonResult;
 import com.jcohy.scis.common.PageJson;
-import com.jcohy.scis.model.Project;
 import com.jcohy.scis.model.Type;
-import com.jcohy.scis.service.ProjectService;
 import com.jcohy.scis.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * Copyright  : 2017- www.jcohy.com
@@ -26,9 +22,6 @@ public class AdminTypeController {
 
     @Autowired
     private TypeService typeService;
-
-    @Autowired
-    private ProjectService projectService;
 
     @GetMapping("/list")
     @ResponseBody

@@ -18,24 +18,21 @@ import java.util.Arrays;
 @Aspect
 @Component
 public class HttpAspect {
-
     private final static Logger logger = LoggerFactory.getLogger(HttpAspect.class);
 
     ThreadLocal<Long> startTime = new ThreadLocal<>();
 
-
     @Pointcut("execution(public * com.jcohy.scis.controller..*.*(..))")
     public void log() {
+
     }
 
     @Before("log()")
     public void doBefore(JoinPoint joinPoint) {
         startTime.set(System.currentTimeMillis());
-
         // 接收到请求，记录请求内容
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
-
         // 记录下请求内容
         logger.info("URL : " + request.getRequestURL().toString());
         logger.info("HTTP_METHOD : " + request.getMethod());
@@ -55,5 +52,4 @@ public class HttpAspect {
 //        logger.info("RESPONSE : " + object.toString());
 //        logger.info("SPEND TIME : " + (System.currentTimeMillis() - startTime.get()));
     }
-
 }
