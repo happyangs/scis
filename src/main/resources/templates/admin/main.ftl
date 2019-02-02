@@ -24,7 +24,7 @@
                     <a class="ht-user-name">${role}</a>
                 </div>
             </div>
-            <span class="sys-title">毕设项目信息管理系统</span>
+            <span class="sys-title">毕设信息管理系统</span>
             <ul class="ht-nav">
                 <li class="ht-nav-item">
                     <a id="updatePassword" style="cursor: pointer"><i class="fa fa-power-off fa-fw"></i>修改密码</a>

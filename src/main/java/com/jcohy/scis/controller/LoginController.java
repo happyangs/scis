@@ -70,7 +70,7 @@ public class LoginController {
      */
     @GetMapping("/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response){
-        return "redirect:/";
+        return "redirect:/index";
     }
 
 

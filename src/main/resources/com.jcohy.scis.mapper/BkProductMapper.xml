@@ -5,6 +5,7 @@
         <id column="id" jdbcType="INTEGER" property="id" />
         <result column="product_id" jdbcType="INTEGER" property="productId" />
         <result column="product_type" jdbcType="INTEGER" property="productType" />
+        <result column="product_theme" jdbcType="VARCHAR" property="productTheme" />
         <result column="product_name" jdbcType="VARCHAR" property="productName" />
         <result column="show_path" jdbcType="VARCHAR" property="showPath" />
         <result column="price" jdbcType="DECIMAL" property="price" />
@@ -20,7 +21,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id, product_id, product_type, product_name, show_path, price, html_num, product_desc,
+        id, product_id, product_type, product_theme,product_name, show_path, price, html_num, product_desc,
         product_synopsis, remark, add_time, update_time, is_delete,link,link_code
     </sql>
 
@@ -28,7 +29,7 @@
         select
           <include refid="Base_Column_List" />
           from bk_product
-          where is_delete = 0
+          where (0 = 0)
         <if test="productId != null">
             AND product_id = #{productId,jdbcType=INTEGER}
         </if>
@@ -50,6 +51,9 @@
             </if>
             <if test="productType != null">
                 product_type,
+            </if>
+            <if test="productTheme != null">
+                product_theme,
             </if>
             <if test="productName != null">
                 product_name,
@@ -95,6 +99,9 @@
             <if test="productType != null">
                 #{productType,jdbcType=INTEGER},
             </if>
+            <if test="productTheme != null">
+                #{productTheme,jdbcType=VARCHAR},
+            </if>
             <if test="productName != null">
                 #{productName,jdbcType=VARCHAR},
             </if>
@@ -125,11 +132,11 @@
             <if test="isDelete != null">
                 #{isDelete,jdbcType=INTEGER},
             </if>
-            <if test="linkCode != null">
-                #{linkCode,jdbcType=VARCHAR},
-            </if>
             <if test="link != null">
                 #{link,jdbcType=VARCHAR},
+            </if>
+            <if test="linkCode != null">
+                #{linkCode,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
@@ -144,6 +151,9 @@
         <set>
             <if test="productType != null">
                 product_type = #{productType,jdbcType=INTEGER},
+            </if>
+            <if test="productTheme != null">
+                product_theme = #{productTheme,jdbcType=VARCHAR},,
             </if>
             <if test="productName != null">
                 product_name = #{productName,jdbcType=VARCHAR},

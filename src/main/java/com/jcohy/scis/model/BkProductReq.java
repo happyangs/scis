@@ -29,6 +29,11 @@ public class BkProductReq extends PageReq {
     private String productName;
 
     /**
+     * 商品主题
+     */
+    private String productTheme;
+
+    /**
      * 首页图片链接
      */
     private String showPath;

@@ -59,11 +59,13 @@ public class ProductController {
     @GetMapping("/form")
     public String form(@RequestParam(required = false) Integer id, ModelMap map){
         List<BkConfig> productType = typeService.getBkConfig(ConfigTypeEnum.PRODUCT_TYPE.getCode());
+        List<BkConfig> productTheme = typeService.getBkConfig(ConfigTypeEnum.PRODUCT_THEME.getCode());
         if (id != null){
             BkProductVo product = productService.queryById(id);
             map.put("product",product);
         }
         map.put("productType",productType);
+        map.put("productTheme",productTheme);
         return "admin/product/form";
     }
 

@@ -13,6 +13,7 @@ layui.define([ 'layer',  'table','common'], function (exports) {
             ,{field: 'productId', align:'center', title: '产品ID',width:90,unresize:true}
             ,{field: 'productTypeName', align:'center', title: '类型',width:100,unresize:true}
             ,{field: 'productName', align:'center', title: '名称',width:150,unresize:true}
+            ,{field: 'productTheme', align:'center', title: '题材',width:60,unresize:true}
             ,{field: 'price', align:'center', title: '价格',width:80,unresize:true,sort: true}
             ,{field: 'htmlNum', align:'center', title: '张数',width:60,unresize:true}
             ,{field: 'showPath', align:'center', title: '首图',width:130,unresize:true}

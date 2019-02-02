@@ -19,6 +19,11 @@ public class BkProductVo implements Serializable {
     private Integer productId;
 
     /**
+     * 题材
+     */
+    private String productTheme;
+
+    /**
      * 商品类型
      */
     private Integer productType;

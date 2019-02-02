@@ -50,10 +50,17 @@ public class ProductServiceImpl implements ProductService{
             BkConfigReq req = new BkConfigReq();
             req.setConfigType(ConfigTypeEnum.PRODUCT_TYPE.getCode());
             List<BkConfig> bkConfigs = bkConfigMapper.queryConfig(req);
+
+            BkConfigReq themereq = new BkConfigReq();
+            themereq.setConfigType(ConfigTypeEnum.PRODUCT_THEME.getCode());
+            List<BkConfig> themeConfigs = bkConfigMapper.queryConfig(themereq);
+
             Map<Integer,String> productTypeMap = bkConfigs.stream().filter(bkConfig -> !StringUtils.isEmpty(bkConfig.getZhName())).collect(Collectors.toMap(BkConfig::getCode,BkConfig::getZhName));
+            Map<Integer,String> productThemeMap = themeConfigs.stream().filter(bkConfig -> !StringUtils.isEmpty(bkConfig.getZhName())).collect(Collectors.toMap(BkConfig::getCode,BkConfig::getZhName));
             list.forEach(bkProductVo -> {
                 bkProductVo.setIsSwitch(IsSwitchEnum.code2desc(bkProductVo.getIsDelete()));
                 bkProductVo.setProductTypeName(productTypeMap.get(bkProductVo.getProductType()));
+                bkProductVo.setProductTheme(productThemeMap.get(Integer.valueOf(bkProductVo.getProductTheme())));
             });
         }
 
@@ -72,7 +79,7 @@ public class ProductServiceImpl implements ProductService{
                 bkProductReq.setIsDelete(IsDeleteEnum.NORMAL_DELETE.getCode());
             }
             Integer id = bkProductReq.getId();
-            if(id == null){// 插入
+            if(id == null){
                 bkProductReq.setProductId(this.getOrderId());
                 bkProductReq.setAddTime(new Date());
                 bkProductMapper.insert(bkProductReq);

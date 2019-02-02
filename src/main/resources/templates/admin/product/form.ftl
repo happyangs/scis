@@ -46,6 +46,20 @@
                     </div>
 
                     <div class="layui-form-item">
+                        <label class="layui-form-label">题材</label>
+                        <div class="layui-input-inline">
+                            <select name="productTheme">
+                                <option value="">请选择</option>
+                            <#list productTheme as x>
+                                <option value="${x.code}"
+                                    <#if (product.productTheme == x.code)> selected="selected" </#if>
+                                >${x.zhName}</option>
+                            </#list>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
                         <label class="layui-form-label">首页图片</label>
                         <div class="layui-input-block">
                             <input type="text" name="showPath" lay-verify="required" placeholder="请输入首页图片链接" value="${product.showPath}"
