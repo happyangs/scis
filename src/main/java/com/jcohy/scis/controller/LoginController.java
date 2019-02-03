@@ -4,6 +4,7 @@ import com.jcohy.lang.StringUtils;
 import com.jcohy.scis.common.JsonResult;
 import com.jcohy.scis.model.Admin;
 import com.jcohy.scis.service.AdminService;
+import com.jcohy.scis.utils.MD5Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,11 +46,12 @@ public class LoginController {
             session.setAttribute("role",role);
             logger.error("name:{}  password:{}  type:{}",num,password,role);
             if(StringUtils.trim(role).equals("admin")){
-                Admin login = adminService.login(num, password);
+                String encrypt = MD5Util.md5Hashing(password);
+                Admin login = adminService.login(num, encrypt);
                 if(login == null){
                     return JsonResult.fail("登录失败,用户名不存在");
                 }
-                if(!login.getPassword().equals(password)){
+                if(!login.getPassword().equals(encrypt)){
                     return JsonResult.fail("登录失败,用户名账号密码不匹配");
                 }
                 session.setAttribute("user",login);

@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
  */
 @Controller
 @RequestMapping("/admin/config")
-public class ConfigController extends BaseController{
+public class ConfigController{
 
     @Autowired
     private TypeService typeService;
@@ -88,7 +88,6 @@ public class ConfigController extends BaseController{
         try {
             typeService.insertOrUpdate(bkConfigReq);
         } catch (Exception e) {
-            e.printStackTrace();
             return JsonResult.fail(e.getMessage());
         }
         return JsonResult.ok();
@@ -100,7 +99,6 @@ public class ConfigController extends BaseController{
         try {
             typeService.deleteById(id);
         } catch (Exception e) {
-            e.printStackTrace();
             return JsonResult.fail("删除失败");
         }
         return JsonResult.ok();

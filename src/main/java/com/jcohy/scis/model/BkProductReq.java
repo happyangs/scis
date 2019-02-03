@@ -7,7 +7,9 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * Created by Bryant on 2018.12.3
+ *
+ * @author Bryant
+ * @date 2018.12
  */
 @Data
 public class BkProductReq extends PageReq {

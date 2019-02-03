@@ -3,12 +3,12 @@ package com.jcohy.scis.controller;
 import com.jcohy.scis.common.JsonResult;
 import com.jcohy.scis.common.PageResponse;
 import com.jcohy.scis.common.interfaces.ConfigTypeEnum;
-import com.jcohy.scis.common.interfaces.IsSuccessEnum;
 import com.jcohy.scis.model.*;
 import com.jcohy.scis.service.OrderService;
 import com.jcohy.scis.service.ProductService;
 import com.jcohy.scis.service.TypeService;
 import com.jcohy.scis.utils.DateUtil;
+import com.jcohy.scis.utils.EncryptDecrypt;
 import com.jcohy.scis.utils.SimpleMailSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,11 +16,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Bryant on 2018.12.3
@@ -62,6 +62,9 @@ public class ProductController {
         List<BkConfig> productTheme = typeService.getBkConfig(ConfigTypeEnum.PRODUCT_THEME.getCode());
         if (id != null){
             BkProductVo product = productService.queryById(id);
+            if (!StringUtils.isEmpty(product.getLinkCode())){
+                product.setLinkCode(EncryptDecrypt.decryptStringFromHex(product.getLinkCode()));
+            }
             map.put("product",product);
         }
         map.put("productType",productType);
@@ -103,16 +106,17 @@ public class ProductController {
         if (bkProductVo == null){
             return JsonResult.fail("没查到作品");
         }
+        bkProductVo.setLinkCode(EncryptDecrypt.decryptStringFromHex(bkProductVo.getLinkCode()));
         SendEmailVo sendEmailVo = new SendEmailVo();
         sendEmailVo.setToEmail(bkSendReq.getBuyerEmail());
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         sb.append("点击下载："+bkProductVo.getLink()+" 提取码："+bkProductVo.getLinkCode());
         sendEmailVo.setContent(sb.toString());
         sendEmailVo.setSubject("[网页作业]"+bkProductVo.getProductName());
         Integer isSuccess = simpleMailSender.sendText(sendEmailVo);
 
         // 查询今日订单
-        Integer orderId = null;
+        Integer orderId;
         List<BkOrderVo> orderList = orderService.queryTodayOrders();
         if (CollectionUtils.isEmpty(orderList)){
             orderId = Integer.valueOf(DateUtil.formatDate(new Date(),DateUtil.YYYMMDD)) * 100 + 1;

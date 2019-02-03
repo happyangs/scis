@@ -1,16 +1,17 @@
-package com.jcohy.scis.common;
+package com.jcohy.scis.utils;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * 加密模块
+ * @author dell
  */
 public class EncryptDecrypt {
     /**
      * 盐值
      */
-    private static final String SALT = "dfsad@#%$@TDGDF%$#%@#%WFRGFDHJKcvxznmfdsgdfgs2432534fgdf46t";
+    private static final String SALT = "dfsad@#%$@TDGDF%$#%@#%WFRGFDHJKcvxznmfdsgdfgs2432534fgdf46t1";
     /**
      * 内部密钥
      */
@@ -115,7 +116,7 @@ public class EncryptDecrypt {
         /**
          * 将加密的字节数组转换成16进制字符串
          */
-        StringBuffer stringBuffer = new StringBuffer("");
+        StringBuilder stringBuffer = new StringBuilder("");
         for (int i = 0; i < bytes.length; i++) {
             short a = (short) (bytes[i] & 15);
             short b = (short) ((bytes[i] & (15 << 4)) >>> 4);
@@ -188,12 +189,10 @@ public class EncryptDecrypt {
     }
 
     public static void main(String[] args) {
-        String original = "RMS123456";
-
+        String original = "crnn";
         String encry = encryptStringToHex(original);
         System.out.println("加密后:"+encry);
         String decry = decryptStringFromHex(encry);
         System.out.println("解密后:"+decry);
     }
-
 }

@@ -14,6 +14,7 @@ import com.jcohy.scis.model.BkConfigReq;
 import com.jcohy.scis.model.BkProductReq;
 import com.jcohy.scis.model.BkProductVo;
 import com.jcohy.scis.service.ProductService;
+import com.jcohy.scis.utils.EncryptDecrypt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * Created by Bryant on 2018.12.3
+ *
+ * @author Bryant
+ * @date 2018.12
  */
 @Service
 public class ProductServiceImpl implements ProductService{
@@ -61,15 +64,24 @@ public class ProductServiceImpl implements ProductService{
                 bkProductVo.setIsSwitch(IsSwitchEnum.code2desc(bkProductVo.getIsDelete()));
                 bkProductVo.setProductTypeName(productTypeMap.get(bkProductVo.getProductType()));
                 bkProductVo.setProductTheme(productThemeMap.get(Integer.valueOf(bkProductVo.getProductTheme())));
+                if (!StringUtils.isEmpty(bkProductVo.getLinkCode())){
+                    bkProductVo.setLinkCode(EncryptDecrypt.decryptStringFromHex(bkProductVo.getLinkCode()));
+                }
             });
         }
 
         return PageResponse.buildSuccessResponseWithResult(list,total.intValue());
     }
 
+    /**
+     * 查询商品详情
+     * @param bkProductReq
+     * @return
+     */
     @Override
     public List<BkProductVo> queryList(BkProductReq bkProductReq) {
-        return bkProductMapper.selectByCondition(bkProductReq);
+        List<BkProductVo> list = bkProductMapper.selectByCondition(bkProductReq);
+        return list;
     }
 
     @Override
@@ -77,6 +89,10 @@ public class ProductServiceImpl implements ProductService{
         if (bkProductReq != null){
             if (bkProductReq.getIsDelete() == null){
                 bkProductReq.setIsDelete(IsDeleteEnum.NORMAL_DELETE.getCode());
+            }
+            String linkCode = bkProductReq.getLinkCode();
+            if (!StringUtils.isEmpty(linkCode)){
+                bkProductReq.setLinkCode(EncryptDecrypt.encryptStringToHex(linkCode));
             }
             Integer id = bkProductReq.getId();
             if(id == null){
@@ -109,12 +125,10 @@ public class ProductServiceImpl implements ProductService{
     }
 
     private Integer getOrderId(){
-        Integer productId = null;
+        Integer productId = 10000;
         try {
             BkProductVo bkProductVo = bkProductMapper.getMaxProductId();
-            if (bkProductVo == null){
-                productId = 10000;
-            }else {
+            if (bkProductVo != null){
                 productId = bkProductVo.getProductId() + 1;
             }
         } catch (Exception e) {

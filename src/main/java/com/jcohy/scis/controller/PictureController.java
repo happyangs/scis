@@ -85,22 +85,8 @@ public class PictureController {
         try {
             pictureService.delete(id);
         } catch (Exception e) {
-            e.printStackTrace();
             return JsonResult.fail("删除失败");
         }
         return JsonResult.ok();
     }
-
-//    @GetMapping("/{id}/change")
-//    @ResponseBody
-//    public JsonResult change(@PathVariable("id") Long id, String type){
-//        try {
-//            deptService.change(id,type);
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return JsonResult.fail(e.getMessage());
-//        }
-//        return JsonResult.ok("操作成功");
-//    }
 }

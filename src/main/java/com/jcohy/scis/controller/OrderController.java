@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Created by Byant on 2018-11-28.
@@ -79,7 +78,7 @@ public class OrderController {
         try {
             orderService.updateById(bkOrderReq);
         } catch (Exception e) {
-            logger.info("订单保存失败",e.getMessage());
+            logger.info("订单保存失败,error:{}",e.getMessage());
             return JsonResult.fail(e.getMessage());
         }
         return JsonResult.ok();
@@ -128,7 +127,7 @@ public class OrderController {
 
         SendEmailVo sendEmailVo = new SendEmailVo();
         sendEmailVo.setToEmail(orderVo.getBuyerEmail());
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         sb.append("点击下载："+bkProductVo.getLink()+" 提取码："+bkProductVo.getLinkCode());
         sendEmailVo.setContent(sb.toString());
         sendEmailVo.setSubject(bkProductVo.getProductName());
